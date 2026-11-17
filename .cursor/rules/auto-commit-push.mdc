@@ -1,0 +1,28 @@
+---
+description: After each requested change, commit by feature and push to the fork. No PR unless asked.
+alwaysApply: true
+---
+
+# Auto commit and push
+
+This checkout tracks **ihoudjedje/cleanyourtv** (`origin`). Upstream is Gathin23/cleanyourtv. Work on `fire-tv-stick-4k` unless the user names another branch.
+
+This project rule **overrides** the global “only commit/push when asked”.
+
+## After finishing a request
+
+If the work left a real git change (not secrets, not gitignored TV dumps):
+
+1. One **topic per commit**. If the request was several features, split commits the same way.
+2. Title: `area: what changed` (repo style), short body on why.
+3. Never commit `backup/`, `shots/`, `work/`, `tools/adbkey/`, `local.properties`, ADB keys, IPs, Wi-Fi names, or secrets.
+4. `git add` only the files for that topic, then `git commit` (hooks on; no `--amend` unless they asked).
+5. **Push immediately** to `origin` on the current branch: `git push -u origin HEAD`.
+6. **No pull request** unless they ask for one. Do not `gh pr create`.
+7. Never force-push, never push to `upstream`, never skip hooks.
+
+If there is nothing to commit, say so and do not create an empty commit.
+
+## What this does not do
+
+Cursor cannot push while you are silent. The commit happens when the agent finishes the task you just asked for, not on a timer.
