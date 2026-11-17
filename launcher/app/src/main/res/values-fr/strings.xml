@@ -3,6 +3,8 @@
     <string name="app_name">Accueil</string>
     <string name="inputs">Sources</string>
     <string name="wifi">Wi-Fi</string>
+    <string name="paper_black">Noir profond</string>
+    <string name="paper_colorful">Coloré</string>
     <string name="settings">Paramètres</string>
     <string name="choose_input">Sources</string>
     <string name="connected">Connecté</string>

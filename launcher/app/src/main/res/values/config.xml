@@ -373,6 +373,9 @@
     <!-- The Wi-Fi/Ethernet pill in the top bar. false hides it (on Android 14 with Location off it can
          only say "Wi-Fi", not the network name). Can also be set with "show_network_pill" in a theme. -->
     <bool name="show_network_pill">true</bool>
+    <!-- A top-bar toggle next to Wi-Fi: ultra black paper, or the theme's colourful Home. Off by default; a theme
+         can set "paper_toggle": true. The choice is remembered on the TV. Ultra black until the owner taps it. -->
+    <bool name="paper_toggle">false</bool>
     <!-- Apps shown as round buttons with their own logo in the top bar, left of the network pill, in this order.
          They leave the grid. Missing apps are skipped. Can also be set with "top_bar_apps" in a theme. -->
     <string-array name="top_bar_apps" translatable="false">

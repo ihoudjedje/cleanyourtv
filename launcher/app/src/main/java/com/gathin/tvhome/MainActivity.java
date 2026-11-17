@@ -187,6 +187,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     /** config show_inputs_pill: false keeps the Inputs pill hidden even when the TV has inputs. */
     private boolean showInputsPill = true;
     private TextView btnWifi;
+    private TextView btnPaper;
     /** The network pill's icon as last set, so a refresh that changes nothing does not lay the top bar out again. */
     private int wifiIcon;
     /** The pills have been filled in once; later resumes refresh them after the first frame. */
@@ -575,8 +576,20 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             clockRow.addOnLayoutChangeListener(centerGreeting);
         }
         btnWifi = findViewById(R.id.btnWifi);
+        btnPaper = findViewById(R.id.btnPaper);
         shamsiDate = findViewById(R.id.shamsiDate);
         stats = findViewById(R.id.stats);
+        if (cfg.paperToggle) {
+            boolean colorful = Paper.colorful(getSharedPreferences(Config.SETTINGS_NAME, MODE_PRIVATE));
+            btnPaper.setVisibility(View.VISIBLE);
+            makeIconOnly(btnPaper);
+            stylePaperButton(colorful);
+            btnPaper.setOnClickListener(v -> {
+                SharedPreferences prefs = getSharedPreferences(Config.SETTINGS_NAME, MODE_PRIVATE);
+                prefs.edit().putBoolean(Paper.KEY, !Paper.colorful(prefs)).commit();
+                recreate();
+            });
+        }
         raceCalendar = cfg.raceCalendar;
         racePanel = findViewById(R.id.racePanel);
         raceKicker = findViewById(R.id.raceKicker);
@@ -916,13 +929,14 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         };
         btnInputs.setOnKeyListener(pillKeys);
         btnWifi.setOnKeyListener(pillKeys);
+        btnPaper.setOnKeyListener(pillKeys);
         btnVpn.setOnKeyListener(pillKeys);
         btnSettings.setOnKeyListener(pillKeys);
         btnReorder.setOnKeyListener(pillKeys);
         btnLibraryTop.setOnKeyListener(pillKeys);
         for (View button : topAppButtons) button.setOnKeyListener(pillKeys);
         if (advancedEffects) {
-            List<View> pills = new ArrayList<>(Arrays.asList(btnInputs, btnWifi, btnVpn, btnReorder, btnLibraryTop, btnSettings));
+            List<View> pills = new ArrayList<>(Arrays.asList(btnInputs, btnWifi, btnPaper, btnVpn, btnReorder, btnLibraryTop, btnSettings));
             pills.addAll(topAppButtons);
             for (View button : pills) {
                 button.setOnFocusChangeListener((view, focused) -> view.animate()
@@ -3038,6 +3052,11 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
                 btnWifi.setCompoundDrawableTintList(tint);
             }
         }
+    }
+
+    private void stylePaperButton(boolean colorful) {
+        btnPaper.setCompoundDrawablesRelativeWithIntrinsicBounds(colorful ? R.drawable.ic_paper_fill : R.drawable.ic_paper, 0, 0, 0);
+        btnPaper.setContentDescription(getString(colorful ? R.string.paper_colorful : R.string.paper_black));
     }
 
     /** config.xml icon_only_buttons. */
