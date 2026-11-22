@@ -8,7 +8,11 @@ import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.IdentityHashMap;
+import java.util.Map;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -52,9 +56,6 @@ public class QuotesTest {
         assertEquals("Poet", quotes.get(0).enAuthor);
         assertEquals("أ\nب", quotes.get(0).ar);
         assertEquals("شاعر", quotes.get(0).arAuthor);
-        int arabicFirst = 0;
-        for (Quotes.Quote q : shipped()) if (q.arabicFirst) arabicFirst++;
-        assertTrue("written in Arabic: " + arabicFirst, arabicFirst >= 25 && arabicFirst < shipped().size());
     }
 
     @Test public void aBlockOfAnotherSizeIsLeftOut() throws IOException {
@@ -64,7 +65,7 @@ public class QuotesTest {
 
     @Test public void everyShippedQuoteHasBothLanguagesAndAnAuthor() throws IOException {
         List<Quotes.Quote> quotes = shipped();
-        assertTrue("quotes: " + quotes.size(), quotes.size() >= 60);
+        assertFalse(quotes.isEmpty());
         // Every block in the file made a quote: none was dropped for its size.
         long blocks = 0;
         boolean inBlock = false;
@@ -88,53 +89,64 @@ public class QuotesTest {
         }
     }
 
-    @Test public void aQuoteStaysTwentyTwoToThirtySeconds() throws IOException {
-        for (Quotes.Quote q : shipped()) {
-            long ms = Quotes.holdMs(q);
-            assertTrue(q.en + ": " + ms, ms >= 22_000L && ms <= 30_000L);
-        }
-        assertTrue(Quotes.holdMs(new Quotes.Quote("Short.", "A", "ق", "م", false))
-                < Quotes.holdMs(new Quotes.Quote(new String(new char[150]).replace('\0', 'x'), "A", "ق", "م", false)));
+    @Test public void everyQuoteHasThirtySecondsAndFifteenMinutesPassWithoutARepeat() throws IOException {
+        assertEquals(30_000L, Quotes.SLOT_MS);
+        assertTrue(Quotes.MIN_GAP * Quotes.SLOT_MS >= 15 * 60_000L);
+        assertTrue("quotes: " + shipped().size(), shipped().size() > 2 * Quotes.MIN_GAP);
     }
 
-    @Test public void theDeckShowsEveryQuoteOnceBeforeAnyAgain() throws IOException {
-        List<Quotes.Quote> quotes = shipped();
-        Quotes.Deck deck = new Quotes.Deck(quotes, new Random(7), "");
-        Set<Quotes.Quote> round = new HashSet<>();
-        for (int i = 0; i < quotes.size(); i++) round.add(deck.next());
-        assertEquals(quotes.size(), round.size());
+    @Test public void everyShippedQuoteWasWrittenInArabic() throws IOException {
+        for (Quotes.Quote q : shipped()) assertTrue(q.en, q.arabicFirst);
     }
 
-    @Test public void noQuoteOrAuthorFollowsItself() throws IOException {
+    @Test public void theDeckShowsEveryQuoteOnceARoundAndNeverOneAgainWithinThirty() throws IOException {
         List<Quotes.Quote> quotes = shipped();
-        for (int seed = 0; seed < 50; seed++) {
-            Quotes.Deck deck = new Quotes.Deck(quotes, new Random(seed), "");
-            Quotes.Quote before = deck.next();
-            for (int i = 0; i < quotes.size() * 3; i++) {   // across two reshuffles
-                Quotes.Quote q = deck.next();
-                assertNotEquals(before.en, q.en);
-                assertNotEquals("seed " + seed, before.enAuthor, q.enAuthor);
-                before = q;
+        int n = quotes.size();
+        for (int seed = 0; seed < 40; seed++) {
+            Quotes.Deck deck = new Quotes.Deck(quotes, new Random(seed), new ArrayList<>());
+            List<Quotes.Quote> shown = new ArrayList<>();
+            for (int i = 0; i < n * 5; i++) shown.add(deck.next());
+            for (int round = 0; round < 5; round++) {
+                assertEquals("seed " + seed, n, new HashSet<>(shown.subList(round * n, round * n + n)).size());
+            }
+            Map<Quotes.Quote, Integer> at = new IdentityHashMap<>();
+            for (int i = 0; i < shown.size(); i++) {
+                Integer before = at.put(shown.get(i), i);
+                if (before != null) assertTrue("seed " + seed + ": again after " + (i - before), i - before > Quotes.MIN_GAP);
+                if (i > 0) assertNotEquals("seed " + seed, shown.get(i - 1).enAuthor, shown.get(i).enAuthor);
             }
         }
     }
 
-    @Test public void aRunDoesNotOpenWithTheQuoteTheLastOneEndedOn() throws IOException {
-        List<Quotes.Quote> two = parse("One\nA\n١\nألف\n\nTwo\nB\n٢\nباء\n");
-        for (int seed = 0; seed < 20; seed++) {
-            assertEquals("Two", new Quotes.Deck(two, new Random(seed), "One").next().en);
+    @Test public void aRunDoesNotRepeatWhatTheLastRunShowedRecently() throws IOException {
+        List<Quotes.Quote> quotes = shipped();
+        List<String> recent = new ArrayList<>();
+        for (int i = 0; i < Quotes.MIN_GAP; i++) recent.add(quotes.get(i).en);
+        for (int seed = 0; seed < 40; seed++) {
+            Quotes.Deck deck = new Quotes.Deck(quotes, new Random(seed), recent);
+            for (int p = 0; p < Quotes.MIN_GAP; p++) {
+                Quotes.Quote q = deck.next();
+                int k = recent.indexOf(q.en);
+                if (k >= 0) assertTrue("seed " + seed, recent.size() + p - k > Quotes.MIN_GAP);
+            }
+            List<String> carried = deck.recent();
+            assertEquals(Quotes.MIN_GAP, carried.size());
         }
     }
 
-    @Test public void aListOfOneAuthorStillNeverRepeatsAQuote() throws IOException {
-        List<Quotes.Quote> same = parse("One\nA\n١\nألف\n\nTwo\nA\n٢\nألف\n\nThree\nA\n٣\nألف\n");
-        Quotes.Deck deck = new Quotes.Deck(same, new Random(3), "");
+    @Test public void aShortListStillNeverRepeatsAQuoteRunning() throws IOException {
+        List<Quotes.Quote> two = parse("One\nA\n\u0661\n\u0623\u0644\u0641\n\nTwo\nB\n\u0662\n\u0628\u0627\u0621\n");
+        for (int seed = 0; seed < 20; seed++) {
+            assertEquals("Two", new Quotes.Deck(two, new Random(seed), Arrays.asList("One")).next().en);
+        }
+        List<Quotes.Quote> same = parse("One\nA\n\u0661\n\u0623\u0644\u0641\n\nTwo\nA\n\u0662\n\u0623\u0644\u0641\n\nThree\nA\n\u0663\n\u0623\u0644\u0641\n");
+        Quotes.Deck deck = new Quotes.Deck(same, new Random(3), new ArrayList<>());
         String before = deck.next().en;
         for (int i = 0; i < 30; i++) {
             String en = deck.next().en;
             assertNotEquals(before, en);
             before = en;
         }
-        assertTrue(new Quotes.Deck(parse(""), new Random(), "").isEmpty());
+        assertTrue(new Quotes.Deck(parse(""), new Random(), new ArrayList<>()).isEmpty());
     }
 }

@@ -34,6 +34,7 @@ rule sit on its wanted list until a screenshot arrives.
 | `seasonal_skin` | <img src="../themes/halloween/screenshot.jpg" width="320" alt="seasonal_skin on a TV"> |
 | `settings_key_panel` | <img src="quick-settings-panel.jpg" width="320" alt="settings_key_panel on a TV"> |
 | `home_idle_clock_minutes` | <img src="quotes-screensaver.png" width="320" alt="home_idle_clock_minutes on a TV"> |
+| `home_idle_clock_seconds` | <img src="quotes-screensaver.png" width="320" alt="home_idle_clock_seconds on a TV: the quotes screensaver Home opens after the wait"> |
 | `back_opens_clock` | <img src="switches/back_opens_clock.jpg" width="320" alt="back_opens_clock on a TV"> |
 | `gamepad_passthrough` | <img src="switches/gamepad_passthrough.jpg" width="320" alt="gamepad_passthrough on a TV"> |
 | `home_ignore_channel_keys` | <img src="switches/home_ignore_channel_keys.png" width="320" alt="home_ignore_channel_keys on a TV"> |

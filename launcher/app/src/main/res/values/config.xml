@@ -546,8 +546,8 @@
     <integer name="home_idle_clock_minutes">0</integer>
     <!-- The same wait in seconds, for one shorter than a minute. Above 0 it is used instead of
          home_idle_clock_minutes, a theme's included; 0 leaves the minutes in charge (the default upstream).
-         config.xml only. This TV: the quotes come up after 10 seconds without a key on Home. -->
-    <integer name="home_idle_clock_seconds">10</integer>
+         config.xml only. This TV: the quotes come up after 30 seconds without a key on Home. -->
+    <integer name="home_idle_clock_seconds">30</integer>
     <!-- Back on the Home screen opens the quotes screensaver (QuoteActivity, the same screen as
          home_idle_clock_minutes). Back keeps working as usual inside apps and Settings; only Home's own Back
          press changes. Off by default (Back does nothing on Home); a theme can set "back_opens_clock": true. -->

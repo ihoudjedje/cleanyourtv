@@ -29,6 +29,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -37,9 +38,8 @@ import java.util.Set;
 /**
  * The quotes screensaver's scene (layout dream_quotes): one quote at a time on black over a slow ambient glow,
  * in Arabic and English, the language it was written in on top, each in quotation marks with the author's
- * name. A quote stays 22 to 30 s
- * (Quotes.holdMs), fades out, and the next one rises in line by line a little off the last one's spot while the
- * glow shifts colour, so nothing burns in. The quotes are res/raw/quotes.txt, in a shuffled order (Quotes.Deck).
+ * name, centred on the screen. Each quote has 30 s (Quotes.SLOT_MS): it rises in line by line, stays, and
+ * fades out as the next one comes, while the glow behind shifts colour. The quotes are res/raw/quotes.txt, in a shuffled order (Quotes.Deck).
  * Shared by QuoteDream (the system screensaver) and QuoteActivity (Home left idle).
  */
 final class QuoteScene {
@@ -49,7 +49,9 @@ final class QuoteScene {
     /** Each line starts this long after the one above it. */
     private static final long STAGGER_MS = 260L;
     /** The quote the last run ended on, so the next run does not open with it. */
-    private static final String PREFS = "quotes", LAST_KEY = "last";
+    private static final String PREFS = "quotes", RECENT_KEY = "recent";
+    /** Parts the quotes in RECENT_KEY: a quote's own text can hold a line break. */
+    private static final String SEPARATOR = "\u001F";
     /** Names and the rule on a wallpaper or plain black; over the glow they take a pale tint of its colour. */
     private static final int ACCENT = 0xFFE8D9B5;
     /** The glow's colour change: 16 steps over 8 s. Animated per frame it redrew the full-screen gradient ~480 times. */
@@ -94,7 +96,7 @@ final class QuoteScene {
     private final Runnable turn = new Runnable() {
         @Override
         public void run() {
-            long stayed = Quotes.holdMs(shown) + FADE_OUT_MS;
+            long stayed = Quotes.SLOT_MS;
             content.animate().alpha(0f).setDuration(FADE_OUT_MS).withLayer().withEndAction(() -> {
                 shiftGlow();
                 advanceWallpaper(stayed);
@@ -116,8 +118,9 @@ final class QuoteScene {
         amiri = ctx.getResources().getFont(R.font.amiri);
         outfitLight = ctx.getResources().getFont(R.font.outfit_light);
         outfitMedium = ctx.getResources().getFont(R.font.outfit_medium);
+        String recent = ctx.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(RECENT_KEY, "");
         deck = new Quotes.Deck(load(ctx.getResources()), random,
-                ctx.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(LAST_KEY, ""));
+                recent.isEmpty() ? new ArrayList<>() : Arrays.asList(recent.split(SEPARATOR)));
         ambient = root.findViewById(R.id.dreamAmbient);
         glow = new GradientDrawable();
         glow.setGradientType(GradientDrawable.RADIAL_GRADIENT);
@@ -149,7 +152,7 @@ final class QuoteScene {
         for (View line : lines) line.animate().cancel();
         if (shown != null) {
             content.getContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-                    .edit().putString(LAST_KEY, shown.en).apply();
+                    .edit().putString(RECENT_KEY, String.join(SEPARATOR, deck.recent())).apply();
         }
         wallpaperGeneration++;   // a decode still running must not attach its picture to a stopped scene
     }
@@ -284,7 +287,7 @@ final class QuoteScene {
         firstAuthor.setTextColor(accent);
         secondAuthor.setTextColor(accent);
         rule.setBackgroundColor(accent & 0x99FFFFFF);
-        drift();
+        centre();
         float rise = 14f * content.getResources().getDisplayMetrics().density;
         content.setAlpha(1f);
         long delay = 0;
@@ -297,7 +300,7 @@ final class QuoteScene {
                     .setDuration(FADE_IN_MS).setInterpolator(ease).withLayer().start();
             delay += STAGGER_MS;
         }
-        handler.postDelayed(turn, Quotes.holdMs(quote));
+        handler.postDelayed(turn, Quotes.SLOT_MS - FADE_OUT_MS);   // the fade-out ends as the slot does
     }
 
     /**
@@ -346,16 +349,11 @@ final class QuoteScene {
         author.setLayoutParams(params);
     }
 
-    /** A new spot near the centre for each quote, with the glow centred behind it. */
-    private void drift() {
-        View parent = (View) content.getParent();
-        float x = parent.getWidth() * 0.06f * (random.nextFloat() * 2f - 1f);
-        float y = parent.getHeight() * 0.07f * (random.nextFloat() * 2f - 1f);
-        content.setTranslationX(x);
-        content.setTranslationY(y);
-        if (parent.getWidth() > 0 && parent.getHeight() > 0) {
-            glow.setGradientCenter(0.5f + x / parent.getWidth(), 0.5f + y / parent.getHeight());
-        }
+    /** Every quote in the middle of the screen (the layout centres the column), with the glow behind it. */
+    private void centre() {
+        content.setTranslationX(0f);
+        content.setTranslationY(0f);
+        glow.setGradientCenter(0.5f, 0.5f);
     }
 
     /** The glow's colour, most of the way to white: readable as text, and still of the scene. */

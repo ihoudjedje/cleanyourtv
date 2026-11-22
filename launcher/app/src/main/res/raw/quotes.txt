@@ -1,352 +1,10 @@
 # The quotes screensaver's quotes (QuoteScene). One quote is four lines, then a blank line:
-#   the quote in the language it was written in / its author / the quote in the other language / its author
-# The two languages are Arabic and English. A quote written in Arabic starts with its Arabic lines and is
-# shown Arabic first; any other starts with its English lines and is shown English first.
-# " / " inside a quote is a line break (between the two halves of a verse). Lines that start with # are
-# notes: each quote's source is written above it. The screensaver adds the quotation marks itself.
-# Only quotes with a source that can be checked belong here, and nothing religious.
-
-# Meditations 10.16
-Waste no more time arguing what a good man should be. Be one.
-Marcus Aurelius
-لا تُضِع وقتًا آخر في الجدال حول ما ينبغي أن يكون عليه الرجل الصالح. كُن أنت ذلك الرجل.
-ماركوس أوريليوس
-
-# Meditations 6.6
-The best revenge is not to be like your enemy.
-Marcus Aurelius
-أفضل انتقام ألّا تكون مثل عدوّك.
-ماركوس أوريليوس
-
-# Meditations 12.17
-If it is not right, do not do it; if it is not true, do not say it.
-Marcus Aurelius
-إن لم يكن صوابًا فلا تفعله، وإن لم يكن حقًّا فلا تقله.
-ماركوس أوريليوس
-
-# Letters to Lucilius 13
-We suffer more often in imagination than in reality.
-Seneca
-نتألّم في خيالنا أكثر ممّا نتألّم في الواقع.
-سينيكا
-
-# On the Shortness of Life 1
-It is not that we have a short time to live, but that we waste a lot of it.
-Seneca
-ليست الحياة التي نُعطاها قصيرة، لكنّنا نحن من نبدّد الكثير منها.
-سينيكا
-
-# Letters to Lucilius 1
-While we are postponing, life speeds by.
-Seneca
-وبينما نؤجّل، تمضي الحياة مسرعة.
-سينيكا
-
-# Enchiridion 5
-Men are disturbed not by things, but by the views which they take of things.
-Epictetus
-لا تُقلق الناسَ الأشياءُ نفسها، بل نظرتُهم إليها.
-إبكتيتوس
-
-# Nicomachean Ethics 1.7
-One swallow does not make a summer, nor does one day; and so too one day, or a short time, does not make a man blessed and happy.
-Aristotle
-سنونوةٌ واحدة لا تصنع الصيف، ولا يومٌ واحد؛ وكذلك لا يجعل يومٌ واحد أو زمنٌ قصير الإنسانَ مغبوطًا سعيدًا.
-أرسطو
-
-# The Story of Philosophy (1926), on Aristotle
-We are what we repeatedly do. Excellence, then, is not an act, but a habit.
-Will Durant
-نحن ما نكرّر فعله. فالتميّز إذن ليس فعلًا، بل عادة.
-ويل ديورانت
-
-# Plato, Apology 38a
-The unexamined life is not worth living.
-Socrates
-الحياة التي لا يتأمّلها صاحبها لا تستحقّ أن تُعاش.
-سقراط
-
-# Fragment, quoted in Plato's Cratylus 402a
-You cannot step twice into the same river.
-Heraclitus
-لا يمكنك أن تنزل النهر نفسه مرّتين.
-هيراقليطس
-
-# Principal Doctrines 27
-Of all the means which are procured by wisdom to ensure happiness throughout the whole of life, by far the most important is the acquisition of friends.
-Epicurus
-من بين كلّ ما تهيّئه الحكمة لسعادة العمر كلّه، أعظمُه بلا منازع اكتسابُ الأصدقاء.
-أبيقور
-
-# Essays, book 1, chapter 39, On Solitude
-The greatest thing in the world is to know how to belong to oneself.
-Michel de Montaigne
-أعظم شيء في الدنيا أن يعرف المرء كيف يكون لنفسه.
-ميشيل دو مونتين
-
-# Hamlet, act 1, scene 3
-This above all: to thine own self be true.
-William Shakespeare
-وفوق كلّ شيء: كن صادقًا مع نفسك.
-وليم شكسبير
-
-# Hamlet, act 2, scene 2
-There is nothing either good or bad, but thinking makes it so.
-William Shakespeare
-ليس ثمّة شيء حسنٌ أو سيّئ، إنما التفكير هو ما يجعله كذلك.
-وليم شكسبير
-
-# Candide (1759), closing line
-We must cultivate our garden.
-Voltaire
-علينا أن نزرع حديقتنا.
-فولتير
-
-# Wilhelm Meister's Journeyman Years
-Knowing is not enough; we must apply. Willing is not enough; we must do.
-Johann Wolfgang von Goethe
-لا تكفي المعرفة، بل لا بدّ من التطبيق. ولا تكفي الإرادة، بل لا بدّ من الفعل.
-يوهان فولفغانغ فون غوته
-
-# Twilight of the Idols, Maxims and Arrows 12
-If we have our own why of life, we shall get along with almost any how.
-Friedrich Nietzsche
-إذا كان لنا سببٌ نعيش من أجله، استطعنا أن نحتمل أيّ ظرف تقريبًا.
-فريدريش نيتشه
-
-# Essays: First Series, Circles (1841)
-Nothing great was ever achieved without enthusiasm.
-Ralph Waldo Emerson
-ما تحقّق شيء عظيم قطّ من دون حماسة.
-رالف والدو إمرسون
-
-# Walden (1854), Where I Lived, and What I Lived For
-Our life is frittered away by detail… Simplify, simplify.
-Henry David Thoreau
-حياتنا تتبدّد في التفاصيل… بسِّط، بسِّط.
-هنري ديفيد ثورو
-
-# Three Methods of Reform (1900)
-Everybody thinks of changing humanity, and nobody thinks of changing himself.
-Leo Tolstoy
-الجميع يفكّر في تغيير البشرية، ولا أحد يفكّر في تغيير نفسه.
-ليو تولستوي
-
-# The Brothers Karamazov, The Grand Inquisitor
-The mystery of human existence lies not in just staying alive, but in finding something to live for.
-Fyodor Dostoevsky
-سرّ الوجود الإنساني ليس في أن يبقى المرء حيًّا فحسب، بل في أن يجد ما يعيش من أجله.
-فيودور دوستويفسكي
-
-# Poor Richard's Almanack (1737)
-Well done is better than well said.
-Benjamin Franklin
-العمل المتقَن خيرٌ من القول المتقَن.
-بنجامين فرانكلين
-
-# Labor Day speech, Syracuse, 7 September 1903
-Far and away the best prize that life offers is the chance to work hard at work worth doing.
-Theodore Roosevelt
-أعظم جائزة تقدّمها الحياة هي فرصة أن تعمل بجدّ في عملٍ يستحقّ العناء.
-ثيودور روزفلت
-
-# You Learn by Living (1960)
-You must do the thing you think you cannot do.
-Eleanor Roosevelt
-عليك أن تفعل الشيء الذي تظنّ أنك لا تستطيع فعله.
-إليانور روزفلت
-
-# Optimism (1903)
-Although the world is full of suffering, it is full also of the overcoming of it.
-Helen Keller
-مع أنّ العالم مليء بالمعاناة، فهو مليء أيضًا بالتغلّب عليها.
-هيلين كيلر
-
-# Letter to his son Eduard, 5 February 1930
-It is the same with people as it is with riding a bike. Only when moving can one comfortably maintain one's balance.
-Albert Einstein
-حال الناس كحال راكب الدرّاجة: لا يحفظ المرء توازنه مرتاحًا إلا وهو يتحرّك.
-ألبرت أينشتاين
-
-# Man's Search for Meaning
-When we are no longer able to change a situation… we are challenged to change ourselves.
-Viktor Frankl
-حين نعجز عن تغيير الموقف… يصبح التحدّي أن نغيّر أنفسنا.
-فيكتور فرانكل
-
-# Long Walk to Freedom (1994)
-I learned that courage was not the absence of fear, but the triumph over it.
-Nelson Mandela
-تعلّمتُ أنّ الشجاعة ليست غياب الخوف، بل الانتصار عليه.
-نيلسون مانديلا
-
-# Oberlin College commencement address, June 1965
-The time is always right to do right.
-Martin Luther King Jr.
-الوقت مناسبٌ دائمًا لفعل ما هو صواب.
-مارتن لوثر كينغ
-
-# The Soul of Man under Socialism (1891)
-To live is the rarest thing in the world. Most people exist, that is all.
-Oscar Wilde
-أن تعيش هو أندر شيء في العالم. معظم الناس موجودون فحسب.
-أوسكار وايلد
-
-# Return to Tipasa (1952)
-In the middle of winter I at last discovered that there was in me an invincible summer.
-Albert Camus
-في قلب الشتاء، اكتشفتُ أخيرًا أنّ في داخلي صيفًا لا يُقهر.
-ألبير كامو
-
-# Wind, Sand and Stars (Terre des hommes, 1939)
-Perfection is finally attained not when there is no longer anything to add, but when there is no longer anything to take away.
-Antoine de Saint-Exupéry
-يبلغ الشيء كماله لا حين لا يبقى ما يُضاف إليه، بل حين لا يبقى ما يُحذف منه.
-أنطوان دو سانت إكزوبيري
-
-# Letters to a Young Poet, letter 4 (1903)
-Be patient toward all that is unsolved in your heart and try to love the questions themselves.
-Rainer Maria Rilke
-اصبر على كلّ ما لم يُحلّ في قلبك، وحاول أن تحبّ الأسئلة نفسها.
-راينر ماريا ريلكه
-
-# Notebooks
-As a well-spent day brings happy sleep, so life well used brings happy death.
-Leonardo da Vinci
-كما يجلب اليومُ الحافل نومًا هانئًا، تجلب الحياةُ الحافلة موتًا هانئًا.
-ليوناردو دافنشي
-
-# Poem 624 (Johnson) / 690 (Franklin)
-Forever is composed of nows.
-Emily Dickinson
-الأبد يتألّف من لحظات الحاضر.
-إميلي ديكنسون
-
-# Rasselas (1759), chapter 13
-Great works are performed not by strength, but perseverance.
-Samuel Johnson
-الأعمال العظيمة لا تُنجَز بالقوّة، بل بالمثابرة.
-صمويل جونسون
-
-# Letters to Friends (Ad Familiares) 9.4, to Varro
-If you have a garden in your library, we shall have all we want.
-Cicero
-إن كانت لك حديقةٌ في مكتبتك، فلن ينقصنا شيء.
-شيشرون
-
-# Odes 1.11
-Seize the day, trusting as little as possible in tomorrow.
-Horace
-اغتنم يومك، ولا تعوّل على الغد إلا أقلّ القليل.
-هوراس
-
-# Moralia, On Listening to Lectures 18
-The mind does not require filling like a bottle, but rather, like wood, it only requires kindling.
-Plutarch
-العقل لا يحتاج إلى أن يُملأ كالوعاء، بل يكفيه، كالحطب، أن يُوقَد.
-بلوتارخ
-
-# What I Believe (1925)
-The good life is one inspired by love and guided by knowledge.
-Bertrand Russell
-الحياة الطيّبة هي التي يُلهمها الحبّ وتقودها المعرفة.
-برتراند راسل
-
-# The Principles of Psychology (1890), chapter 22
-The art of being wise is the art of knowing what to overlook.
-William James
-فنّ الحكمة هو فنّ معرفة ما ينبغي التغاضي عنه.
-وليم جيمس
-
-# Tales from the Secret Annex, "Give!" (1944)
-How wonderful it is that no one has to wait, but can start right now to gradually change the world!
-Anne Frank
-ما أروع أنّ أحدًا لا يحتاج إلى الانتظار، بل يستطيع أن يبدأ الآن في تغيير العالم شيئًا فشيئًا!
-آن فرانك
-
-# Letter to Theo van Gogh, 22 October 1882
-Great things do not just happen by impulse but are a succession of small things linked together.
-Vincent van Gogh
-الأشياء العظيمة لا تحدث باندفاعةٍ عابرة، بل هي سلسلة من أشياء صغيرة يتّصل بعضها ببعض.
-فنسنت فان غوخ
-
-# Letter to his sister Susan, 4 August 1836
-A man who dares to waste one hour of time has not discovered the value of life.
-Charles Darwin
-من يجرؤ على إضاعة ساعة واحدة من وقته لم يكتشف قيمة الحياة.
-تشارلز داروين
-
-# Analects 2.15
-Learning without thought is labour lost; thought without learning is perilous.
-Confucius
-التعلّم بلا تفكير جهدٌ ضائع، والتفكير بلا تعلّم خطر.
-كونفوشيوس
-
-# Analects 2.24
-To see what is right and not to do it is want of courage.
-Confucius
-أن ترى الصواب ولا تفعله جُبن.
-كونفوشيوس
-
-# Analects 4.17
-When we see men of worth, we should think of equalling them; when we see men of a contrary character, we should turn inwards and examine ourselves.
-Confucius
-إذا رأينا أهل الفضل فلنفكّر كيف نصير مثلهم، وإذا رأينا من هم على خلاف ذلك فلننظر في دواخلنا ونحاسب أنفسنا.
-كونفوشيوس
-
-# Tao Te Ching 64
-A journey of a thousand miles begins with a single step.
-Lao Tzu
-رحلة الألف ميل تبدأ بخطوة واحدة.
-لاو تزو
-
-# Tao Te Ching 46
-He who knows that enough is enough will always have enough.
-Lao Tzu
-من عرف أنّ الكفاية تكفيه، كان في كفايةٍ دائمًا.
-لاو تزو
-
-# Mencius 4B:12
-The great man is he who does not lose his child's heart.
-Mencius
-الإنسان العظيم هو من لا يفقد قلب الطفل الذي كانه.
-منشيوس
-
-# Xunzi, chapter 8
-Not having heard is not as good as having heard; having heard is not as good as having seen; having seen is not as good as knowing; knowing is not as good as putting into practice.
-Xunzi
-أن تسمع خيرٌ من ألّا تسمع، وأن ترى خيرٌ من أن تسمع، وأن تعرف خيرٌ من أن ترى، وأن تعمل خيرٌ من أن تعرف.
-شون تسي
-
-# The Book of Five Rings, the Water Book
-Today is victory over yourself of yesterday; tomorrow is your victory over lesser men.
-Miyamoto Musashi
-اليوم تنتصر على نفسك التي كانت بالأمس، وغدًا تنتصر على من هم دونك.
-مياموتو موساشي
-
-# Stray Birds (1916), 6
-If you shed tears when you miss the sun, you also miss the stars.
-Rabindranath Tagore
-إن بكيتَ لأنّ الشمس غابت عنك، فستغيب عنك النجوم أيضًا.
-رابندرانات طاغور
-
-# Fireflies (1928)
-The butterfly counts not months but moments, and has time enough.
-Rabindranath Tagore
-الفراشة لا تعدّ الشهور بل اللحظات، ولديها من الوقت ما يكفي.
-رابندرانات طاغور
-
-# Tirukkural 391
-Learn thoroughly what should be learned, and then live accordingly.
-Thiruvalluvar
-تعلّم ما ينبغي تعلّمه تعلّمًا تامًّا، ثم عِش وفق ما تعلّمت.
-ثيروفالوفار
-
-# Sand and Foam (1926)
-Generosity is giving more than you can, and pride is taking less than you need.
-Kahlil Gibran
-الكرم أن تعطي أكثر ممّا تستطيع، والكبرياء أن تأخذ أقلّ ممّا تحتاج.
-جبران خليل جبران
+#   the quote in Arabic / its author / the quote in English / its author
+# Every quote here was written in Arabic, and is shown Arabic first with its English under it. (The parser also
+# takes a quote that starts with its English lines, shown English first, but the screensaver keeps to Arabic.)
+# " / " inside a quote is a line break (between the two halves of a verse, or two lines of a poem). Lines that
+# start with # are notes: each quote's source is written above it. The screensaver adds the quotation marks.
+# Only quotes whose wording and author were checked against a source belong here, and nothing religious.
 
 # Diwan, ode to Sayf al-Dawla on the battle of al-Hadath
 على قدرِ أهلِ العزمِ تأتي العزائمُ / وتأتي على قدرِ الكرامِ المكارمُ
@@ -527,3 +185,291 @@ Mahmoud Darwish
 نجيب محفوظ
 Fear does not prevent death; it prevents life.
 Naguib Mahfouz
+
+# Diwan, ode «لكل امرئ من دهره ما تعودا»
+إذا أنتَ أكرمتَ الكريمَ ملكتَهُ / وإنْ أنتَ أكرمتَ اللئيمَ تمرّدا
+المتنبي
+If you honour the noble, you make him yours; / if you honour the base, he turns against you.
+Al-Mutanabbi
+
+# Diwan, ode «لكل امرئ من دهره ما تعودا»
+ووضعُ الندى في موضعِ السيفِ بالعُلى / مضرٌّ كوضعِ السيفِ في موضعِ الندى
+المتنبي
+Generosity where the sword is called for harms the pursuit of greatness, / as much as the sword where generosity is called for.
+Al-Mutanabbi
+
+# Diwan, ode «لكل امرئ من دهره ما تعودا»
+ومن يجعلِ الضرغامَ بازًا لصيدِهِ / تصيّدَهُ الضرغامُ فيما تصيّدا
+المتنبي
+Whoever makes a lion his hunting falcon / will be hunted by the lion among its prey.
+Al-Mutanabbi
+
+# Diwan, ode «واحرّ قلباه»
+إذا رأيتَ نيوبَ الليثِ بارزةً / فلا تظنّنَّ أنّ الليثَ يبتسمُ
+المتنبي
+When you see the lion baring its fangs, / do not think the lion is smiling.
+Al-Mutanabbi
+
+# Diwan, ode «واحرّ قلباه»
+وما انتفاعُ أخي الدنيا بناظرِهِ / إذا استوتْ عندَهُ الأنوارُ والظُّلَمُ
+المتنبي
+What use are a man's eyes to him / if light and darkness are the same to him?
+Al-Mutanabbi
+
+# Diwan, «لك يا منازل في القلوب منازل»
+وإذا أتتكَ مذمّتي من ناقصٍ / فهيَ الشهادةُ لي بأنّيَ كاملُ
+المتنبي
+When blame of me reaches you from a lesser man, / it is the witness that I am whole.
+Al-Mutanabbi
+
+# Diwan, «لا افتخار إلا لمن لا يضام»
+مَن يهُنْ يسهلِ الهوانُ عليهِ / ما لجرحٍ بميّتٍ إيلامُ
+المتنبي
+Whoever accepts humiliation finds it easy to bear: / a wound gives no pain to the dead.
+Al-Mutanabbi
+
+# Diwan, «لهوى النفوس سريرة لا تعلم»
+ذو العقلِ يشقى في النعيمِ بعقلِهِ / وأخو الجهالةِ في الشقاوةِ ينعمُ
+المتنبي
+The man of reason is wretched amid comfort, because of his reason, / and the brother of ignorance is content amid misery.
+Al-Mutanabbi
+
+# Diwan, «أقل فعالي بله أكثره مجد»
+ومن نكدِ الدنيا على الحرِّ أن يرى / عدوًّا لهُ ما من صداقتِهِ بُدُّ
+المتنبي
+Among the world's hardships for a free man is to see / an enemy whose friendship he cannot do without.
+Al-Mutanabbi
+
+# Diwan
+أفاضلُ الناسِ أغراضٌ لدى الزمنِ / يخلو من الهمِّ أخلاهم من الفِطَنِ
+المتنبي
+The best of people are targets for Time: / the freest of worry are those freest of insight.
+Al-Mutanabbi
+
+# Diwan, «أغالب فيك الشوق والشوق أغلب»
+وكلُّ امرئٍ يُولي الجميلَ محبَّبٌ / وكلُّ مكانٍ يُنبتُ العزَّ طيّبُ
+المتنبي
+Everyone who does a kindness is loved, / and every place where dignity grows is good.
+Al-Mutanabbi
+
+# Mu'allaqa
+لسانُ الفتى نصفٌ ونصفٌ فؤادُهُ / فلم يبقَ إلّا صورةُ اللحمِ والدمِ
+زهير بن أبي سلمى
+A man is half his tongue and half his heart; / what remains is only a shape of flesh and blood.
+Zuhayr ibn Abi Sulma
+
+# Mu'allaqa
+وأعلمُ ما في اليومِ والأمسِ قبلَهُ / ولكنّني عن علمِ ما في غدٍ عَمِ
+زهير بن أبي سلمى
+I know what today holds, and yesterday before it, / but to what tomorrow holds I am blind.
+Zuhayr ibn Abi Sulma
+
+# Mu'allaqa
+ومن يغتربْ يحسبْ عدوًّا صديقَهُ / ومن لا يكرّمْ نفسَهُ لا يُكرَّمِ
+زهير بن أبي سلمى
+Whoever lives among strangers takes an enemy for a friend, / and whoever does not honour himself is not honoured.
+Zuhayr ibn Abi Sulma
+
+# Mu'allaqa
+وكائنْ ترى من صامتٍ لكَ معجبٍ / زيادتُهُ أو نقصُهُ في التكلّمِ
+زهير بن أبي سلمى
+How many a silent man you admire / shows his worth or his want once he speaks.
+Zuhayr ibn Abi Sulma
+
+# Mu'allaqa
+وظلمُ ذوي القربى أشدُّ مضاضةً / على المرءِ من وقعِ الحسامِ المهنّدِ
+طرفة بن العبد
+Injustice from one's own kin cuts deeper / than the blow of an Indian sword.
+Tarafa ibn al-Abd
+
+# Mu'allaqa
+أرى العيشَ كنزًا ناقصًا كلَّ ليلةٍ / وما تنقصِ الأيامُ والدهرُ ينفدِ
+طرفة بن العبد
+I see life as a treasure that shrinks every night, / and what the days and time diminish runs out.
+Tarafa ibn al-Abd
+
+# Diwan, «أرانا موضعين لأمر غيب»
+وقد طوّفتُ في الآفاقِ حتّى / رضيتُ من الغنيمةِ بالإيابِ
+امرؤ القيس
+I have roamed the far horizons until / I would settle, for all my spoils, for coming home.
+Imru' al-Qays
+
+# Diwan, «أتاني أبيت اللعن أنك لمتني»
+ولستَ بمستبقٍ أخًا لا تلمُّهُ / على شعثٍ أيُّ الرجالِ المهذّبُ؟
+النابغة الذبياني
+You will keep no friend whose faults you will not bear: / which man is without flaw?
+Al-Nabigha al-Dhubyani
+
+# Diwan, elegy for his brother Arbad «بلينا وما تبلى النجوم الطوالع»
+وما المرءُ إلّا كالشهابِ وضوئِهِ / يحورُ رمادًا بعدَ إذ هوَ ساطعُ
+لبيد بن ربيعة
+A man is but a shooting star and its light: / it turns to ash after it has blazed.
+Labid ibn Rabi'a
+
+# Saqt al-Zand, «ألا في سبيل المجد ما أنا فاعل»
+وإنّي وإنْ كنتُ الأخيرَ زمانُهُ / لآتٍ بما لم تستطعْهُ الأوائلُ
+أبو العلاء المعري
+Though I come last in time, / I will bring what those before me could not.
+Abu al-Ala al-Ma'arri
+
+# Saqt al-Zand, «ألا في سبيل المجد ما أنا فاعل»
+ولمّا رأيتُ الجهلَ في الناسِ فاشيًا / تجاهلتُ حتّى ظُنَّ أنّيَ جاهلُ
+أبو العلاء المعري
+When I saw ignorance spread among people, / I feigned it, until I was thought ignorant.
+Abu al-Ala al-Ma'arri
+
+# Saqt al-Zand, elegy for a jurist of Ma'arra
+خفّفِ الوطءَ ما أظنُّ أديمَ الـ / أرضِ إلّا من هذهِ الأجسادِ
+أبو العلاء المعري
+Tread lightly: I think the earth's very surface / is made of nothing but these bodies.
+Abu al-Ala al-Ma'arri
+
+# Diwan, the urjuza «ذات الأمثال»
+إنّ الشبابَ والفراغَ والجِدَهْ / مفسدةٌ للمرءِ أيُّ مفسدهْ
+أبو العتاهية
+Youth, idleness and wealth / are a ruin for a man, and what a ruin.
+Abu al-Atahiya
+
+# Diwan, «بكيتُ على الشبابِ بدمعِ عيني»
+فيا ليتَ الشبابَ يعودُ يومًا / فأُخبِرَهُ بما فعلَ المشيبُ
+أبو العتاهية
+If only youth would come back one day, / so I could tell it what old age has done.
+Abu al-Atahiya
+
+# Diwan
+يا قومِ أذني لبعضِ الحيِّ عاشقةٌ / والأذنُ تعشقُ قبلَ العينِ أحيانا
+بشار بن برد
+My people, my ear has fallen in love with someone of the tribe: / the ear sometimes loves before the eye.
+Bashar ibn Burd
+
+# Diwan
+عدوُّكَ من صديقِكَ مستفادٌ / فلا تستكثرنَّ من الصحابِ
+ابن الرومي
+Your enemy is gained from among your friends, / so do not gather too many companions.
+Ibn al-Rumi
+
+# Diwan (أراك عصي الدمع)
+سيذكرني قومي إذا جدَّ جدُّهم / وفي الليلةِ الظلماءِ يُفتقدُ البدرُ
+أبو فراس الحمداني
+My people will remember me when their trouble grows grave: / on the darkest night the full moon is missed.
+Abu Firas al-Hamdani
+
+# Lamiyyat al-Ajam
+حبُّ السلامةِ يثني همَّ صاحبِهِ / عن المعالي ويُغري المرءَ بالكسلِ
+الطغرائي
+The love of safety turns its owner's resolve / from high things, and tempts a man to idleness.
+Al-Tughra'i
+
+# Nuniyya (عنوان الحكم)
+يا خادمَ الجسمِ كم تشقى بخدمتِهِ / أتطلبُ الربحَ فيما فيهِ خسرانُ
+أبو الفتح البستي
+You who serve the body, how you toil in its service: / do you seek profit where there is only loss?
+Abu al-Fath al-Busti
+
+# Nuniyya (عنوان الحكم)
+أقبلْ على النفسِ واستكملْ فضائلَها / فأنتَ بالنفسِ لا بالجسمِ إنسانُ
+أبو الفتح البستي
+Turn to your inner self and perfect its virtues: / you are human by your self, not by your body.
+Abu al-Fath al-Busti
+
+# His only surviving ode, the ʿayniyya «لا تعذليه»
+لا تعذليهِ فإنّ العذلَ يولعُهُ / قد قلتِ حقًّا ولكنْ ليسَ يسمعُهُ
+ابن زريق البغدادي
+Do not reproach him: reproach only makes him cling the more; / what you said was true, but he does not hear it.
+Ibn Zurayq al-Baghdadi
+
+# Diwan, «أرأيتَ أيَّ سوالفٍ وخدودِ», praising Ahmad ibn Abi Du'ad
+لولا اشتعالُ النارِ فيما جاورتْ / ما كانَ يُعرفُ طيبُ عَرفِ العودِ
+أبو تمام
+Were it not for the fire that catches what lies near it, / the sweet scent of aloeswood would never be known.
+Abu Tammam
+
+# Diwan, «البينُ جرّعني نقيعَ الحنظلِ»
+نقّلْ فؤادَكَ حيثُ شئتَ من الهوى / ما الحبُّ إلّا للحبيبِ الأوّلِ
+أبو تمام
+Move your heart wherever you like in love: / true love belongs only to the first beloved.
+Abu Tammam
+
+# Songs of Life (أغاني الحياة), «نشيد الجبار»
+سأعيشُ رغمَ الداءِ والأعداءِ / كالنسرِ فوقَ القمّةِ الشمّاءِ
+أبو القاسم الشابي
+I will live, despite illness and enemies, / like the eagle above the lofty summit.
+Abu al-Qasim al-Shabbi
+
+# The Philosophy of Life (فلسفة الحياة)
+والذي نفسُهُ بغيرِ جمالٍ / لا يرى في الوجودِ شيئًا جميلا
+إيليا أبو ماضي
+He whose own soul has no beauty / sees nothing beautiful in the world.
+Elia Abu Madi
+
+# «كن بلسمًا»
+كنْ بلسمًا إنْ صارَ دهرُكَ أرقمًا / وحلاوةً إنْ صارَ غيرُكَ علقما
+إيليا أبو ماضي
+Be a balm if your days turn serpent, / and sweetness if others turn bitter.
+Elia Abu Madi
+
+# Al-Shawqiyyat, «قم للمعلم»
+وإذا أُصيبَ القومُ في أخلاقِهمْ / فأقمْ عليهمْ مأتمًا وعويلا
+أحمد شوقي
+When a people is struck in its morals, / hold a mourning for them and lament.
+Ahmad Shawqi
+
+# «اللغة العربية تنعى حظها بين أهلها», 1903
+أنا البحرُ في أحشائِهِ الدرُّ كامنٌ / فهل سألوا الغوّاصَ عن صدفاتي
+حافظ إبراهيم
+I am the sea, with pearls hidden in its depths: / have they asked the diver about my shells?
+Hafez Ibrahim
+
+# «فكّر بغيرك», in كزهر اللوز أو أبعد (2005)
+وأنتَ تُعِدُّ فطورَكَ، فكِّرْ بغيركَ
+محمود درويش
+As you prepare your breakfast, think of others.
+Mahmoud Darwish
+
+# «إلى أمي», in عاشق من فلسطين (1966)
+أحنُّ إلى خبزِ أمّي / وقهوةِ أمّي / ولمسةِ أمّي
+محمود درويش
+I long for my mother's bread, / my mother's coffee, / my mother's touch.
+Mahmoud Darwish
+
+# Al-Mawakib (المواكب), 1919
+أعطني النايَ وغنِّ / فالغنا سرُّ الخلودْ
+جبران خليل جبران
+Give me the flute and sing: / for song is the secret of eternity.
+Kahlil Gibran
+
+# Kitab al-Hayawan, volume 3, «القول في المعنى واللفظ»
+المعاني مطروحةٌ في الطريقِ يعرفُها العجميُّ والعربيُّ والبدويُّ والقرويُّ والمدنيُّ، وإنّما الشأنُ في إقامةِ الوزنِ وتخيّرِ اللفظِ…
+الجاحظ
+Meanings lie in the road, known to the foreigner and the Arab, the Bedouin, the villager and the townsman; what matters is the metre and the choice of words…
+Al-Jahiz
+
+# The Muqaddimah, chapter 2, section 23 (title)
+المغلوبُ مولعٌ أبدًا بالاقتداءِ بالغالبِ في شعارِهِ وزيِّهِ ونِحلتِهِ وسائرِ أحوالِهِ وعوائدِهِ.
+ابن خلدون
+The vanquished always love to imitate the victor in his emblems, his dress, his creed and all his ways and customs.
+Ibn Khaldun
+
+# The Muqaddimah, chapter 1, first premise
+إنّ الاجتماعَ الإنسانيَّ ضروريٌّ، ويعبّرُ الحكماءُ عن هذا بقولهم: الإنسانُ مدنيٌّ بالطبع.
+ابن خلدون
+Human society is a necessity; the philosophers express this by saying: man is political by nature.
+Ibn Khaldun
+
+# On First Philosophy (في الفلسفة الأولى)
+ينبغي لنا ألّا نستحيي من استحسانِ الحقِّ واقتناءِ الحقِّ من أين أتى، وإنْ أتى من الأجناسِ القاصيةِ عنّا والأممِ المباينةِ لنا.
+الكندي
+We should not be ashamed to admire the truth and to take it from wherever it comes, even from distant peoples and nations unlike us.
+Al-Kindi
+
+# Wahy al-Qalam (وحي القلم), volume 2, «قلتُ لنفسي وقالت لي»
+فإنْ لم تزدْ شيئًا على الدنيا كنتَ أنتَ زائدًا على الدنيا.
+مصطفى صادق الرافعي
+If you add nothing to the world, you are yourself surplus to the world.
+Mustafa Sadiq al-Rafi'i
+
+# Al-Akhlaq wa al-Siyar fi Mudawat al-Nufus (الأخلاق والسير في مداواة النفوس)
+من أرادَ الإنصافَ فليتوهّمْ نفسَهُ مكانَ خصمِهِ، فإنّهُ يلوحُ لهُ وجهُ تعسّفِهِ.
+ابن حزم
+Whoever wants to be fair should imagine himself in his opponent's place: the face of his own injustice will show itself to him.
+Ibn Hazm

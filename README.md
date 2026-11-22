@@ -92,7 +92,7 @@ A home screen that looks like an Apple TV and gets out of the way:
 | **The rest of your apps in a grid** | Slides up when you press Down. |
 | **One floating glass highlight** | Springs from tile to tile. The focused tile lifts and shows its name. |
 | **Three frosted buttons** | Inputs (HDMI ports under the names you gave them in the TV's settings, AV, Live TV), Wi-Fi or Ethernet with the network name, Settings. |
-| **A greeting, a thin clock and the date** | In [Outfit](https://fonts.google.com/specimen/Outfit), and a Quotes screensaver in Arabic and English. Set `show_stats` in config or a theme for one line under the clock: CPU, free memory and free storage. It stays off unless you turn it on, and it refreshes only while Home is on screen. |
+| **A greeting, a thin clock and the date** | In [Outfit](https://fonts.google.com/specimen/Outfit), and a Quotes screensaver of Arabic literature with English translations. Set `show_stats` in config or a theme for one line under the clock: CPU, free memory and free storage. It stays off unless you turn it on, and it refreshes only while Home is on screen. |
 | **Themes and module cards** | Themes change colours, wallpaper, dock and columns without a rebuild, and module cards let other apps plug a tile in, only with your say-so. |
 
 And a TV that stops working against you: no sponsored rows, no "Discover" nags, no analytics
@@ -102,8 +102,8 @@ phoning home, no apps you never asked for.
 |---|---|
 | ![The top shelf names the focused app over an ambient glow in its colour](docs/focus-2-up-netflix.png) | ![The Inputs popup: HDMI ports with what is connected, AV and Live TV](docs/inputs-menu.jpg) |
 | *Top shelf and ambient glow* | *Inputs: HDMI with connection state, AV, Live TV* |
-| ![The grid with the glass highlight on a tile and its name beneath](docs/focus-1-fancode.png) | ![The Quotes screensaver: a quote in the language it was written in above its translation, with the author's name](docs/quotes-screensaver.png) |
-| *The grid, one glass highlight, the tile's name* | *Quotes screensaver, a new quote every 22 to 30 seconds* |
+| ![The grid with the glass highlight on a tile and its name beneath](docs/focus-1-fancode.png) | ![The Quotes screensaver: an Arabic verse above its English translation, with the poet's name](docs/quotes-screensaver.png) |
+| *The grid, one glass highlight, the tile's name* | *Quotes screensaver, Arabic poetry and wisdom, a new quote every 30 seconds* |
 | ![The aurora theme: a wallpaper and tinted pills, pushed without a rebuild](themes/aurora/screenshot.jpg) | ![Six columns and a six-app dock from a theme's config.json](themes/six-columns/screenshot.jpg) |
 | *Aurora theme, pushed with `tools/theme.sh`* | *Six columns and a six-app dock, same launcher* |
 | ![Moving a tile: held OK, chose Move, the tile is picked up and the others dim](docs/tile-move.jpg) | ![The App library: installed apps, one press adds an app back to Home](docs/app-library.jpg) |
@@ -288,7 +288,7 @@ set is in [Troubleshooting](docs/TROUBLESHOOTING.md).
 | **Tile menu** | On by default (`tile_menu`): hold OK on a tile for Move and App info, plus Remove from Home when the app library is on. Off, holding OK opens App info |
 | **Module cards** | Any TV app can offer its own tile; you approve each one once. See [`docs/modules.md`](docs/modules.md) |
 | **Add-ons** | Optional apps that plug in as module cards, kept in [`addons/`](addons/) and never built into the launcher |
-| **Quotes screensaver** | Quotes from writers, poets and thinkers in Arabic and English with their authors, one at a time over the glow |
+| **Quotes screensaver** | Arabic poetry and prose with English translations and their authors, one at a time over the glow |
 | **Remote keys** | Keeps the Input, YouTube and gear buttons working after the stock launcher is gone |
 
 Themes, switches and add-ons together, with screenshots: [cleanyour.tv/addons](https://cleanyour.tv/addons).

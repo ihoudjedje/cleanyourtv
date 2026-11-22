@@ -105,13 +105,13 @@ contract: [`docs/specs/card.md`](specs/card.md). Ready-made ones are in [`addons
 
 ## Quotes screensaver
 
-One quote at a time on black over a slow glow: in Arabic ([Amiri](https://www.amirifont.org/), right to
-left) and in English, each in quotation marks with the author's name. The language the quote was written in is
-on top in larger type, so a verse by al-Mutanabbi opens in Arabic and a line of Shakespeare's in English, with
-the other language under the rule; a quote from a third language opens in English. A quote stays 22 to 30
-seconds, the longer ones longer, then fades into the next. The order is shuffled: every quote comes up once before any
-comes again, a quote never follows itself, and neither does a second one by the same author. Each quote sits a
-little off the last one's spot and the glow changes colour with it, so nothing burns in.
+One quote at a time, in the middle of the screen, on black over a slow glow: Arabic poetry and prose, in
+Arabic ([Amiri](https://www.amirifont.org/), right to left) with an English translation under the rule, each
+in quotation marks with the author's name. Every quote has 30 seconds, then fades into the next, and the glow
+changes colour with it. The order is shuffled: every quote comes up once before any comes again, at least 30
+others come between two showings of the same quote (15 minutes and more, also across a restart of the
+screensaver), and no author follows himself. The quotes stay centred, so on an OLED panel that is left on the
+screensaver for hours, `clock_glow` false and a shorter TV sleep timer are the kinder choice.
 
 ![The Quotes screensaver on a TV](quotes-screensaver.png)
 
@@ -126,18 +126,18 @@ after updating: the Clock screensaver is gone, and Android does not follow the r
 waiting for the timeout: `tools/tv.py 'am start -n com.android.systemui/.Somnambulator'`.
 
 The quotes are in [`launcher/app/src/main/res/raw/quotes.txt`](../launcher/app/src/main/res/raw/quotes.txt):
-four lines a quote (the quote and its author, then both in the other language; a quote written in Arabic
-starts with its Arabic lines) with the source in a note above, and ` / ` for a
-verse's line break. They come from philosophers, writers and poets of the Arabic tradition (al-Mutanabbi, Abu
-Tammam, al-Ma'arri, Shawqi, Darwish, Mahfouz), of Greece and Rome, Europe and America, and of China, Japan and
-India, on how to live well; nothing religious. Each was checked against its source before it went in, and one
+four lines a quote (the Arabic and its author, then the English and its author) with the source in a note
+above, and ` / ` for a verse's line break. They come from the Arabic tradition, from the poets of the
+Mu'allaqat (Zuhayr, Tarafa, Labid) through al-Mutanabbi, Abu Tammam and al-Ma'arri to Shawqi, Abu Madi,
+al-Shabbi and Darwish, and from its prose (al-Jahiz, Ibn Khaldun, Mahfouz), on how to live well; nothing
+religious. The tests ask for more than twice 30 quotes, so the 30-quote gap always holds. Each was checked against its source before it went in, and one
 that could not be was left out: keep to that when adding one. The file and the typeface (a subset of Amiri
 with the Arabic letters and marks, `res/font/amiri.ttf`) are inside the APK, so it needs no network. The
 launcher's unit tests (`QuotesTest`) check the file's shape, the timing and the order.
 
 The same screen is what `home_idle_clock_minutes` and `back_opens_clock` open from Home
 (`home_idle_clock_seconds` in `config.xml`, when above 0, sets that wait in seconds instead, a theme's
-minutes included), and `clock_wallpaper`,
+minutes included; this branch sets 30), and `clock_wallpaper`,
 `clock_wallpaper_dim` and `clock_glow` set what is behind the quotes. Those keys keep their names from the
 Clock screensaver this one replaced, so existing themes work unchanged.
 

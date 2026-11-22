@@ -3,9 +3,11 @@ package com.gathin.tvhome;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -69,71 +71,116 @@ final class Quotes {
         return false;
     }
 
-    /** Time on screen: 22 s for a short quote, up to 30 s for a long one: time to read it twice and think. */
-    static long holdMs(Quote quote) {
-        return Math.min(30_000L, 22_000L + 40L * Math.max(quote.en.length(), quote.ar.length()));
-    }
+    /** Each quote's turn on screen, from the moment it starts to rise in to the moment the next one does. */
+    static final long SLOT_MS = 30_000L;
 
     /**
-     * Every quote once in a random order, then again in a new one. A quote never follows itself, across a
-     * reshuffle or a restart (avoidFirst is the quote the last run ended on), and where the list allows it
-     * neither does a second quote by the same author.
+     * At least this many other quotes come between two showings of the same one: 15 minutes and more of
+     * quotes at 30 s each without a repeat. With fewer quotes than that, as many as the list allows.
+     */
+    static final int MIN_GAP = 30;
+
+    /**
+     * Every quote once in a random order, then all of them again in a new one. Between two showings of a
+     * quote come at least MIN_GAP others, across a new round and across a restart (recent: the quotes the
+     * last run showed, oldest first), and where the list allows it no author follows himself.
      */
     static final class Deck {
-        private final List<Quote> order;
+        private final List<Quote> all;
+        /** What this round has not shown yet. */
+        private final List<Quote> left = new ArrayList<>();
+        /** The number of the showing each quote was last on, counted from the first quote in recent. */
+        private final Map<Quote, Long> lastShown = new IdentityHashMap<>();
+        private final ArrayDeque<Quote> history = new ArrayDeque<>();
         private final Random random;
-        private int next;
+        private final int gap;
+        private long count;
         private Quote last;
 
-        Deck(List<Quote> quotes, Random random, String avoidFirst) {
-            this.order = new ArrayList<>(quotes);
+        Deck(List<Quote> quotes, Random random, List<String> recent) {
+            this.all = new ArrayList<>(quotes);
             this.random = random;
-            for (Quote q : quotes) if (q.en.equals(avoidFirst)) last = q;
-            shuffle();
-        }
-
-        boolean isEmpty() {
-            return order.isEmpty();
-        }
-
-        Quote next() {
-            if (next >= order.size()) shuffle();
-            last = order.get(next++);
-            return last;
-        }
-
-        private void shuffle() {
-            Collections.shuffle(order, random);
-            next = 0;
-            Quote carried = last;
-            for (int i = 0; i < order.size(); i++) {
-                Quote before = i == 0 ? carried : order.get(i - 1);
-                if (before == null || !clashes(order.get(i), before)) continue;
-                int swap = -1;
-                for (int j = i + 1; j < order.size() && swap < 0; j++) {
-                    if (!clashes(order.get(j), before)) swap = j;
+            this.gap = Math.min(MIN_GAP, Math.max(0, all.size() - 1));
+            for (String en : recent) {
+                for (Quote q : all) {
+                    if (q.en.equals(en)) {
+                        lastShown.put(q, count);
+                        remember(q);
+                        last = q;
+                    }
                 }
-                // Near the end nothing later may fit: trade places with an earlier quote where both then fit.
-                for (int j = 0; j < i && swap < 0; j++) {
-                    Collections.swap(order, i, j);
-                    if (fits(i, carried) && fits(j, carried)) swap = j;
-                    Collections.swap(order, i, j);
-                }
-                // Nothing fits by author: at least never the same quote twice running.
-                if (swap < 0 && order.get(i) == before && i + 1 < order.size()) swap = i + 1;
-                if (swap >= 0) Collections.swap(order, i, swap);
+                count++;
             }
         }
 
-        /** The quote at this place clashes with neither neighbour (the one before the first is the last one shown). */
-        private boolean fits(int at, Quote carried) {
-            Quote before = at == 0 ? carried : order.get(at - 1);
-            return (before == null || !clashes(order.get(at), before))
-                    && (at + 1 >= order.size() || !clashes(order.get(at), order.get(at + 1)));
+        boolean isEmpty() {
+            return all.isEmpty();
         }
 
-        private static boolean clashes(Quote a, Quote b) {
-            return a == b || a.enAuthor.equals(b.enAuthor);
+        Quote next() {
+            if (left.isEmpty()) left.addAll(all);
+            List<Quote> pick = candidates(true);
+            // An author with half of what is left must come up now, or the round would end on his quotes
+            // back to back (al-Mutanabbi has many).
+            String crowded = crowdedAuthor();
+            if (crowded != null) {
+                List<Quote> his = new ArrayList<>();
+                for (Quote q : pick) if (q.enAuthor.equals(crowded)) his.add(q);
+                if (!his.isEmpty()) pick = his;
+            }
+            if (pick.isEmpty()) pick = candidates(false);   // only one author left that may come up
+            Quote q;
+            if (!pick.isEmpty()) {
+                q = pick.get(random.nextInt(pick.size()));
+            } else {
+                // Every quote left was shown too recently, which only a short list allows: the longest ago.
+                q = left.get(0);
+                for (Quote c : left) if (seen(c) < seen(q)) q = c;
+            }
+            left.remove(q);
+            lastShown.put(q, count++);
+            remember(q);
+            last = q;
+            return q;
+        }
+
+        /** The quotes shown most recently, oldest first, for the next run's Deck. */
+        List<String> recent() {
+            List<String> out = new ArrayList<>();
+            for (Quote q : history) out.add(q.en);
+            return out;
+        }
+
+        private List<Quote> candidates(boolean byAuthor) {
+            List<Quote> out = new ArrayList<>();
+            for (Quote q : left) {
+                if (count - seen(q) <= gap) continue;
+                if (byAuthor && last != null && q.enAuthor.equals(last.enAuthor)) continue;
+                out.add(q);
+            }
+            return out;
+        }
+
+        /** The author, other than the last one shown, with at least half of the quotes this round has left. */
+        private String crowdedAuthor() {
+            Map<String, Integer> counts = new java.util.HashMap<>();
+            for (Quote q : left) counts.merge(q.enAuthor, 1, Integer::sum);
+            for (Map.Entry<String, Integer> e : counts.entrySet()) {
+                if (last != null && e.getKey().equals(last.enAuthor)) continue;
+                if (2 * e.getValue() >= left.size()) return e.getKey();
+            }
+            return null;
+        }
+
+        private long seen(Quote q) {
+            Long at = lastShown.get(q);
+            return at == null ? Long.MIN_VALUE / 2 : at;
+        }
+
+        private void remember(Quote q) {
+            history.remove(q);
+            history.addLast(q);
+            while (history.size() > MIN_GAP) history.removeFirst();
         }
     }
 }
