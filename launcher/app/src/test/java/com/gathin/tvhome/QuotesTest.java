@@ -89,8 +89,8 @@ public class QuotesTest {
         }
     }
 
-    @Test public void everyQuoteHasThirtySecondsAndFifteenMinutesPassWithoutARepeat() throws IOException {
-        assertEquals(30_000L, Quotes.SLOT_MS);
+    @Test public void everyQuoteStaysAMinuteAndFifteenMinutesPassWithoutARepeat() throws IOException {
+        assertEquals(60_000L, Quotes.SLOT_MS);
         assertTrue(Quotes.MIN_GAP * Quotes.SLOT_MS >= 15 * 60_000L);
         assertTrue("quotes: " + shipped().size(), shipped().size() > 2 * Quotes.MIN_GAP);
     }

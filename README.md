@@ -103,7 +103,7 @@ phoning home, no apps you never asked for.
 | ![The top shelf names the focused app over an ambient glow in its colour](docs/focus-2-up-netflix.png) | ![The Inputs popup: HDMI ports with what is connected, AV and Live TV](docs/inputs-menu.jpg) |
 | *Top shelf and ambient glow* | *Inputs: HDMI with connection state, AV, Live TV* |
 | ![The grid with the glass highlight on a tile and its name beneath](docs/focus-1-fancode.png) | ![The Quotes screensaver: an Arabic verse above its English translation, with the poet's name](docs/quotes-screensaver.png) |
-| *The grid, one glass highlight, the tile's name* | *Quotes screensaver, Arabic poetry and wisdom, a new quote every 30 seconds* |
+| *The grid, one glass highlight, the tile's name* | *Quotes screensaver, Arabic poetry and wisdom, a new quote every minute* |
 | ![The aurora theme: a wallpaper and tinted pills, pushed without a rebuild](themes/aurora/screenshot.jpg) | ![Six columns and a six-app dock from a theme's config.json](themes/six-columns/screenshot.jpg) |
 | *Aurora theme, pushed with `tools/theme.sh`* | *Six columns and a six-app dock, same launcher* |
 | ![Moving a tile: held OK, chose Move, the tile is picked up and the others dim](docs/tile-move.jpg) | ![The App library: installed apps, one press adds an app back to Home](docs/app-library.jpg) |

@@ -38,8 +38,8 @@ import java.util.Set;
 /**
  * The quotes screensaver's scene (layout dream_quotes): one quote at a time on black over a slow ambient glow,
  * in Arabic and English, the language it was written in on top, each in quotation marks with the author's
- * name, centred on the screen. Each quote has 30 s (Quotes.SLOT_MS): it rises in line by line, stays, and
- * fades out as the next one comes, while the glow behind shifts colour. The quotes are res/raw/quotes.txt, in a shuffled order (Quotes.Deck).
+ * name, centred on the screen. Each quote stays a full minute (Quotes.SLOT_MS): it rises in line by line,
+ * stays, then fades out and the next one rises in, while the glow behind shifts colour. The quotes are res/raw/quotes.txt, in a shuffled order (Quotes.Deck).
  * Shared by QuoteDream (the system screensaver) and QuoteActivity (Home left idle).
  */
 final class QuoteScene {
@@ -96,7 +96,7 @@ final class QuoteScene {
     private final Runnable turn = new Runnable() {
         @Override
         public void run() {
-            long stayed = Quotes.SLOT_MS;
+            long stayed = Quotes.SLOT_MS + FADE_OUT_MS;
             content.animate().alpha(0f).setDuration(FADE_OUT_MS).withLayer().withEndAction(() -> {
                 shiftGlow();
                 advanceWallpaper(stayed);
@@ -300,7 +300,7 @@ final class QuoteScene {
                     .setDuration(FADE_IN_MS).setInterpolator(ease).withLayer().start();
             delay += STAGGER_MS;
         }
-        handler.postDelayed(turn, Quotes.SLOT_MS - FADE_OUT_MS);   // the fade-out ends as the slot does
+        handler.postDelayed(turn, Quotes.SLOT_MS);   // a full minute up before the fade-out starts
     }
 
     /**

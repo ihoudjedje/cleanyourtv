@@ -107,9 +107,9 @@ contract: [`docs/specs/card.md`](specs/card.md). Ready-made ones are in [`addons
 
 One quote at a time, in the middle of the screen, on black over a slow glow: Arabic poetry and prose, in
 Arabic ([Amiri](https://www.amirifont.org/), right to left) with an English translation under the rule, each
-in quotation marks with the author's name. Every quote has 30 seconds, then fades into the next, and the glow
+in quotation marks with the author's name. Every quote stays up a full minute, then fades into the next, and the glow
 changes colour with it. The order is shuffled: every quote comes up once before any comes again, at least 30
-others come between two showings of the same quote (15 minutes and more, also across a restart of the
+others come between two showings of the same quote (half an hour and more, also across a restart of the
 screensaver), and no author follows himself. The quotes stay centred, so on an OLED panel that is left on the
 screensaver for hours, `clock_glow` false and a shorter TV sleep timer are the kinder choice.
 

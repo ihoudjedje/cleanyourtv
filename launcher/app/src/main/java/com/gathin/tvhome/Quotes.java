@@ -71,12 +71,12 @@ final class Quotes {
         return false;
     }
 
-    /** Each quote's turn on screen, from the moment it starts to rise in to the moment the next one does. */
-    static final long SLOT_MS = 30_000L;
+    /** How long each quote stays up, from the moment it starts to rise in to the moment it starts to fade out. */
+    static final long SLOT_MS = 60_000L;
 
     /**
      * At least this many other quotes come between two showings of the same one: 15 minutes and more of
-     * quotes at 30 s each without a repeat. With fewer quotes than that, as many as the list allows.
+     * quotes (half an hour at a minute each) without a repeat. With fewer quotes than that, as many as the list allows.
      */
     static final int MIN_GAP = 30;
 
