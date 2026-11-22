@@ -127,7 +127,7 @@ plus d'analytique qui renvoie des données, plus d'applications que vous n'avez 
 |---|---|
 | ![L'étagère supérieure affiche le nom de l'application sélectionnée sur un halo de sa couleur](docs/focus-2-up-netflix.png) | ![La fenêtre Entrées : ports HDMI avec ce qui y est branché, AV et TV en direct](docs/inputs-menu.jpg) |
 | *Étagère supérieure et halo d'ambiance* | *Entrées : HDMI avec l'état de connexion, AV, TV en direct* |
-| ![La grille avec le reflet de verre sur une vignette et son nom en dessous](docs/focus-1-fancode.png) | ![L'économiseur d'écran Horloge : une horloge fine qui dérive sur le halo](docs/clock-screensaver.png) |
+| ![La grille avec le reflet de verre sur une vignette et son nom en dessous](docs/focus-1-fancode.png) | ![L'économiseur d'écran Horloge : une horloge fine qui dérive sur le halo](docs/quotes-screensaver.png) |
 | *La grille, un seul reflet de verre, le nom de la vignette* | *Économiseur d'écran Horloge : il se déplace pour que rien ne marque l'écran* |
 | ![Le thème aurora : un fond d'écran et des boutons teintés, envoyés sans recompilation](themes/aurora/screenshot.jpg) | ![Six colonnes et un dock de six applications, depuis le config.json d'un thème](themes/six-columns/screenshot.jpg) |
 | *Thème Aurora, envoyé avec `tools/theme.sh`* | *Six colonnes et un dock de six applications, même launcher* |

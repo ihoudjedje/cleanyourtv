@@ -104,7 +104,7 @@ Y un televisor que deja de molestarte: sin filas patrocinadas, sin recomendacion
 |---|---|
 | ![La zona de destacados muestra la aplicación en foco sobre un brillo ambiental del color correspondiente](docs/focus-2-up-netflix.png) | ![El menú Entradas: puertos HDMI con el estado de conexión, AV y TV en directo](docs/inputs-menu.jpg) |
 | *Zona de destacados y brillo ambiental* | *Entradas: HDMI con estado de conexión, AV y TV en directo* |
-| ![La cuadrícula con el foco de cristal sobre un elemento y el nombre justo debajo](docs/focus-1-fancode.png) | ![El salvapantallas Reloj: un reloj discreto flotando sobre el resplandor](docs/clock-screensaver.png) |
+| ![La cuadrícula con el foco de cristal sobre un elemento y el nombre justo debajo](docs/focus-1-fancode.png) | ![El salvapantallas Reloj: un reloj discreto flotando sobre el resplandor](docs/quotes-screensaver.png) |
 | *La cuadrícula, el foco de cristal y el nombre del elemento* | *Salvapantallas Reloj, con movimiento para evitar retenciones en la pantalla* |
 | ![El tema aurora: fondo de pantalla y botones personalizados, aplicados sin recompilar](themes/aurora/screenshot.jpg) | ![Seis columnas y un dock con seis aplicaciones definidas en el config.json del tema](themes/six-columns/screenshot.jpg) |
 | *Tema Aurora, aplicado con `tools/theme.sh`* | *Seis columnas y un dock de seis aplicaciones, en el mismo launcher* |

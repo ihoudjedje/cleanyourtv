@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -13,10 +14,18 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -26,14 +35,23 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * The clock screensaver's scene (layout dream_clock): the thin clock and date on black over a slow ambient
- * glow. Every minute the clock drifts to a new spot and the glow shifts colour, so nothing burns in; a
- * ClockRefresh keeps its TextClocks current where Android would not.
- * Shared by ClockDream (the system screensaver) and ClockActivity (Home left idle).
+ * The quotes screensaver's scene (layout dream_quotes): one quote at a time on black over a slow ambient glow,
+ * in Arabic and English, the language it was written in on top, each in quotation marks with the author's
+ * name. A quote stays 22 to 30 s
+ * (Quotes.holdMs), fades out, and the next one rises in line by line a little off the last one's spot while the
+ * glow shifts colour, so nothing burns in. The quotes are res/raw/quotes.txt, in a shuffled order (Quotes.Deck).
+ * Shared by QuoteDream (the system screensaver) and QuoteActivity (Home left idle).
  */
-final class ClockScene {
+final class QuoteScene {
 
-    private static final long MOVE_MS = 60_000L;
+    private static final long FADE_OUT_MS = 1400L;
+    private static final long FADE_IN_MS = 1300L;
+    /** Each line starts this long after the one above it. */
+    private static final long STAGGER_MS = 260L;
+    /** The quote the last run ended on, so the next run does not open with it. */
+    private static final String PREFS = "quotes", LAST_KEY = "last";
+    /** Names and the rule on a wallpaper or plain black; over the glow they take a pale tint of its colour. */
+    private static final int ACCENT = 0xFFE8D9B5;
     /** The glow's colour change: 16 steps over 8 s. Animated per frame it redrew the full-screen gradient ~480 times. */
     private static final int GLOW_STEPS = 16;
     private static final long GLOW_STEP_MS = 500L;
@@ -43,7 +61,15 @@ final class ClockScene {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Random random = new Random();
     private final View content;
-    private final ClockRefresh clockRefresh;
+    /** The language the quote was written in goes in the first pair, in larger type; its translation in the second. */
+    private final TextView first, firstAuthor, second, secondAuthor;
+    private final Typeface amiri, outfitLight, outfitMedium;
+    private final View rule;
+    /** The lines in the order they rise in. */
+    private final View[] lines;
+    private final DecelerateInterpolator ease = new DecelerateInterpolator(1.6f);
+    private final Quotes.Deck deck;
+    private Quotes.Quote shown;
     private final ImageView ambient;
     private final GradientDrawable glow;
     private int colorIndex;
@@ -64,20 +90,34 @@ final class ClockScene {
     private Map<String, Set<String>> moods;
     private String latitude, longitude;
 
-    private final Runnable tick = new Runnable() {
+    /** The quote's time is up: fade it out, then bring in the next one. */
+    private final Runnable turn = new Runnable() {
         @Override
         public void run() {
-            moveClock();
-            shiftGlow();
-            advanceWallpaper();
-            handler.postDelayed(this, MOVE_MS);
+            long stayed = Quotes.holdMs(shown) + FADE_OUT_MS;
+            content.animate().alpha(0f).setDuration(FADE_OUT_MS).withLayer().withEndAction(() -> {
+                shiftGlow();
+                advanceWallpaper(stayed);
+                show(deck.next());
+            }).start();
         }
     };
 
-    /** root is the inflated dream_clock layout. */
-    ClockScene(View root) {
+    /** root is the inflated dream_quotes layout. */
+    QuoteScene(View root) {
         content = root.findViewById(R.id.dreamContent);
-        clockRefresh = new ClockRefresh(content);
+        first = root.findViewById(R.id.quoteFirst);
+        firstAuthor = root.findViewById(R.id.quoteFirstAuthor);
+        rule = root.findViewById(R.id.quoteRule);
+        second = root.findViewById(R.id.quoteSecond);
+        secondAuthor = root.findViewById(R.id.quoteSecondAuthor);
+        lines = new View[]{first, firstAuthor, rule, second, secondAuthor};
+        Context ctx = root.getContext();
+        amiri = ctx.getResources().getFont(R.font.amiri);
+        outfitLight = ctx.getResources().getFont(R.font.outfit_light);
+        outfitMedium = ctx.getResources().getFont(R.font.outfit_medium);
+        deck = new Quotes.Deck(load(ctx.getResources()), random,
+                ctx.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString(LAST_KEY, ""));
         ambient = root.findViewById(R.id.dreamAmbient);
         glow = new GradientDrawable();
         glow.setGradientType(GradientDrawable.RADIAL_GRADIENT);
@@ -88,27 +128,34 @@ final class ClockScene {
         setGlow(PALETTE[colorIndex]);
     }
 
+    private static List<Quotes.Quote> load(Resources res) {
+        try (Reader in = new InputStreamReader(res.openRawResource(R.raw.quotes), StandardCharsets.UTF_8)) {
+            return Quotes.parse(in);
+        } catch (IOException | RuntimeException e) {
+            return new ArrayList<>();   // a black screen with the glow, rather than no screensaver
+        }
+    }
+
     void start() {
-        content.setAlpha(0f);
-        content.post(() -> {
-            placeClock();
-            content.animate().alpha(1f).setDuration(1200).start();
-        });
-        handler.removeCallbacks(tick);
-        handler.postDelayed(tick, MOVE_MS);
-        clockRefresh.start();
+        handler.removeCallbacks(turn);
+        content.animate().cancel();
+        if (!deck.isEmpty()) show(deck.next());
         if (wallpaperFile != null && !wallpaperShown) loadWallpaper();
     }
 
     void stop() {
-        handler.removeCallbacksAndMessages(null);   // the tick and any glow steps still queued
-        clockRefresh.stop();
+        handler.removeCallbacksAndMessages(null);   // the turn and any glow steps still queued
         content.animate().cancel();
+        for (View line : lines) line.animate().cancel();
+        if (shown != null) {
+            content.getContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+                    .edit().putString(LAST_KEY, shown.en).apply();
+        }
         wallpaperGeneration++;   // a decode still running must not attach its picture to a stopped scene
     }
 
     /**
-     * clock_wallpaper: put the picture Home is showing behind the clock, darkened by clock_wallpaper_dim, in
+     * clock_wallpaper: put the picture Home is showing behind the quote, darkened by clock_wallpaper_dim, in
      * place of the glow, and carry a collection's rotation on while the screensaver is up. Decoded off the main
      * thread at screen size in RGB_565 (4 MB at 1080p), like Home's own; until then, or if it cannot be read,
      * the glow stays.
@@ -122,7 +169,7 @@ final class ClockScene {
             return;
         }
         if (!cfg.clockWallpaper) {
-            // clock_glow false: plain black behind the clock (OLED); the clock itself still moves every minute.
+            // clock_glow false: plain black behind the quote (OLED).
             if (!cfg.clockGlow) {
                 wallpaperShown = true;   // also stops the glow's colour cycle
                 ambient.setBackground(null);
@@ -175,7 +222,7 @@ final class ClockScene {
                 ambient.setImageDrawable(new LayerDrawable(new Drawable[]{
                         new BitmapDrawable(res, bmp), new ColorDrawable(shade)}));
             });
-        }, "clock-wallpaper").start();
+        }, "quote-wallpaper").start();
     }
 
     /** WallpaperPlayer's decode: sampled and scaled down to cover the screen, never bigger than 4K. */
@@ -203,10 +250,10 @@ final class ClockScene {
         }
     }
 
-    /** Step to the next picture once its turn is up; the tick already runs every minute. */
-    private void advanceWallpaper() {
+    /** Step to the next picture once its turn is up; called as each quote leaves, with the time it stayed. */
+    private void advanceWallpaper(long stayedMs) {
         if (rotation == null || rotationMs <= 0 || rotation.size() < 2) return;
-        shownMs += MOVE_MS;
+        shownMs += stayedMs;
         if (shownMs < rotationMs) return;
         shownMs = 0;
         // The same pick as Home's, so a shuffled collection stays shuffled and wallpaper_moods still
@@ -227,26 +274,94 @@ final class ClockScene {
                 WallpaperMood.timeOfDay(now.getHour() * 60 + now.getMinute(), sun[0], sun[1]));
     }
 
-    private void moveClock() {
-        content.animate().alpha(0f).setDuration(900).withLayer().withEndAction(() -> {
-            placeClock();
-            content.animate().alpha(1f).setDuration(1200).withLayer().start();
-        }).start();
+    /** Put the quote on screen: its lines rise in one after the other, and its turn to leave is booked. */
+    private void show(Quotes.Quote quote) {
+        shown = quote;
+        boolean arabicFirst = quote.arabicFirst;
+        arabic(arabicFirst ? first : second, arabicFirst ? firstAuthor : secondAuthor, quote, arabicFirst);
+        english(arabicFirst ? second : first, arabicFirst ? secondAuthor : firstAuthor, quote, !arabicFirst);
+        int accent = wallpaperShown ? ACCENT : tint(PALETTE[colorIndex]);
+        firstAuthor.setTextColor(accent);
+        secondAuthor.setTextColor(accent);
+        rule.setBackgroundColor(accent & 0x99FFFFFF);
+        drift();
+        float rise = 14f * content.getResources().getDisplayMetrics().density;
+        content.setAlpha(1f);
+        long delay = 0;
+        for (View line : lines) {
+            line.animate().cancel();
+            line.setAlpha(0f);
+            line.setTranslationY(line == rule ? 0f : rise);
+            if (line == rule) line.setScaleX(0.2f);
+            line.animate().alpha(1f).translationY(0f).scaleX(1f).setStartDelay(delay)
+                    .setDuration(FADE_IN_MS).setInterpolator(ease).withLayer().start();
+            delay += STAGGER_MS;
+        }
+        handler.postDelayed(turn, Quotes.holdMs(quote));
     }
 
-    /** A random spot that keeps the whole clock on screen, with the glow centred behind it. */
-    private void placeClock() {
+    /**
+     * The Arabic pair: Amiri, right to left, in guillemets. A long quote is set in smaller type, so every quote
+     * sits comfortably inside the same column, and the translation is smaller than the original above it.
+     */
+    private void arabic(TextView text, TextView author, Quotes.Quote quote, boolean primary) {
+        int length = quote.ar.length();
+        int size = length <= 60 ? 40 : length <= 120 ? 35 : 29;
+        text.setTypeface(amiri);
+        text.setTextDirection(View.TEXT_DIRECTION_RTL);
+        text.setLineSpacing(0f, 0.9f);
+        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, primary ? size : size * 0.74f);
+        text.setText("\u00AB" + quote.ar + "\u00BB");
+        author.setTypeface(amiri);
+        author.setTextDirection(View.TEXT_DIRECTION_RTL);
+        author.setAllCaps(false);
+        author.setLetterSpacing(0f);
+        author.setTextSize(TypedValue.COMPLEX_UNIT_SP, primary ? 21 : 18);
+        author.setText("\u2014 " + quote.arAuthor);
+        gap(author, -8);   // Amiri leaves room under a line for its deepest letters; the name sits closer
+    }
+
+    /** The English pair: Outfit, left to right, in curly quotation marks, the name in spaced capitals. */
+    private void english(TextView text, TextView author, Quotes.Quote quote, boolean primary) {
+        int length = quote.en.length();
+        int size = length <= 70 ? 32 : length <= 140 ? 27 : 22;
+        text.setTypeface(outfitLight);
+        text.setTextDirection(View.TEXT_DIRECTION_LTR);
+        text.setLineSpacing(0f, 1.2f);
+        text.setTextSize(TypedValue.COMPLEX_UNIT_SP, primary ? size : size * 0.76f);
+        text.setText("\u201C" + quote.en + "\u201D");
+        author.setTypeface(outfitMedium);
+        author.setTextDirection(View.TEXT_DIRECTION_LTR);
+        author.setAllCaps(true);
+        author.setLetterSpacing(0.16f);
+        author.setTextSize(TypedValue.COMPLEX_UNIT_SP, primary ? 14 : 13);
+        author.setText("\u2014 " + quote.enAuthor);
+        gap(author, 16);
+    }
+
+    /** The space between a quote and the name under it, in dp. */
+    private static void gap(View author, int dp) {
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) author.getLayoutParams();
+        params.topMargin = Math.round(dp * author.getResources().getDisplayMetrics().density);
+        author.setLayoutParams(params);
+    }
+
+    /** A new spot near the centre for each quote, with the glow centred behind it. */
+    private void drift() {
         View parent = (View) content.getParent();
-        int maxX = Math.max(0, parent.getWidth() - content.getWidth());
-        int maxY = Math.max(0, parent.getHeight() - content.getHeight());
-        float x = maxX * (0.1f + 0.8f * random.nextFloat());
-        float y = maxY * (0.1f + 0.8f * random.nextFloat());
-        content.setX(x);
-        content.setY(y);
+        float x = parent.getWidth() * 0.06f * (random.nextFloat() * 2f - 1f);
+        float y = parent.getHeight() * 0.07f * (random.nextFloat() * 2f - 1f);
+        content.setTranslationX(x);
+        content.setTranslationY(y);
         if (parent.getWidth() > 0 && parent.getHeight() > 0) {
-            glow.setGradientCenter((x + content.getWidth() / 2f) / parent.getWidth(),
-                    (y + content.getHeight() / 2f) / parent.getHeight());
+            glow.setGradientCenter(0.5f + x / parent.getWidth(), 0.5f + y / parent.getHeight());
         }
+    }
+
+    /** The glow's colour, most of the way to white: readable as text, and still of the scene. */
+    private static int tint(int color) {
+        int r = (color >> 16 & 0xFF), g = (color >> 8 & 0xFF), b = (color & 0xFF);
+        return 0xFF000000 | (r + (255 - r) * 7 / 10) << 16 | (g + (255 - g) * 7 / 10) << 8 | (b + (255 - b) * 7 / 10);
     }
 
     private void shiftGlow() {

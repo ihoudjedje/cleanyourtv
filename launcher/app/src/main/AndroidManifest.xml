@@ -177,9 +177,9 @@
             </intent-filter>
         </activity>
 
-        <!-- The same clock, started by Home itself after home_idle_clock_minutes without input. -->
+        <!-- The same quotes, started by Home itself after home_idle_clock_minutes without input. -->
         <activity
-            android:name=".ClockActivity"
+            android:name=".QuoteActivity"
             android:exported="false"
             android:excludeFromRecents="true"
             android:noHistory="true"
@@ -196,10 +196,10 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- Screensaver: pick it in Settings, or `settings put secure screensaver_components
-             com.gathin.tvhome/.ClockDream` over adb. -->
+             com.gathin.tvhome/.QuoteDream` over adb. -->
         <service
-            android:name=".ClockDream"
-            android:label="@string/dream_name"
+            android:name=".QuoteDream"
+            android:label="@string/quotes_dream_name"
             android:exported="true"
             android:permission="android.permission.BIND_DREAM_SERVICE">
             <intent-filter>

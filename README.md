@@ -92,7 +92,7 @@ A home screen that looks like an Apple TV and gets out of the way:
 | **The rest of your apps in a grid** | Slides up when you press Down. |
 | **One floating glass highlight** | Springs from tile to tile. The focused tile lifts and shows its name. |
 | **Three frosted buttons** | Inputs (HDMI ports under the names you gave them in the TV's settings, AV, Live TV), Wi-Fi or Ethernet with the network name, Settings. |
-| **A greeting, a thin clock and the date** | In [Outfit](https://fonts.google.com/specimen/Outfit), and a matching Clock screensaver. Set `show_stats` in config or a theme for one line under the clock: CPU, free memory and free storage. It stays off unless you turn it on, and it refreshes only while Home is on screen. |
+| **A greeting, a thin clock and the date** | In [Outfit](https://fonts.google.com/specimen/Outfit), and a Quotes screensaver in Arabic and English. Set `show_stats` in config or a theme for one line under the clock: CPU, free memory and free storage. It stays off unless you turn it on, and it refreshes only while Home is on screen. |
 | **Themes and module cards** | Themes change colours, wallpaper, dock and columns without a rebuild, and module cards let other apps plug a tile in, only with your say-so. |
 
 And a TV that stops working against you: no sponsored rows, no "Discover" nags, no analytics
@@ -102,8 +102,8 @@ phoning home, no apps you never asked for.
 |---|---|
 | ![The top shelf names the focused app over an ambient glow in its colour](docs/focus-2-up-netflix.png) | ![The Inputs popup: HDMI ports with what is connected, AV and Live TV](docs/inputs-menu.jpg) |
 | *Top shelf and ambient glow* | *Inputs: HDMI with connection state, AV, Live TV* |
-| ![The grid with the glass highlight on a tile and its name beneath](docs/focus-1-fancode.png) | ![The Clock screensaver: a thin clock drifting over the glow](docs/clock-screensaver.png) |
-| *The grid, one glass highlight, the tile's name* | *Clock screensaver, drifts so nothing burns in* |
+| ![The grid with the glass highlight on a tile and its name beneath](docs/focus-1-fancode.png) | ![The Quotes screensaver: a quote in the language it was written in above its translation, with the author's name](docs/quotes-screensaver.png) |
+| *The grid, one glass highlight, the tile's name* | *Quotes screensaver, a new quote every 22 to 30 seconds* |
 | ![The aurora theme: a wallpaper and tinted pills, pushed without a rebuild](themes/aurora/screenshot.jpg) | ![Six columns and a six-app dock from a theme's config.json](themes/six-columns/screenshot.jpg) |
 | *Aurora theme, pushed with `tools/theme.sh`* | *Six columns and a six-app dock, same launcher* |
 | ![Moving a tile: held OK, chose Move, the tile is picked up and the others dim](docs/tile-move.jpg) | ![The App library: installed apps, one press adds an app back to Home](docs/app-library.jpg) |
@@ -288,13 +288,13 @@ set is in [Troubleshooting](docs/TROUBLESHOOTING.md).
 | **Tile menu** | On by default (`tile_menu`): hold OK on a tile for Move and App info, plus Remove from Home when the app library is on. Off, holding OK opens App info |
 | **Module cards** | Any TV app can offer its own tile; you approve each one once. See [`docs/modules.md`](docs/modules.md) |
 | **Add-ons** | Optional apps that plug in as module cards, kept in [`addons/`](addons/) and never built into the launcher |
-| **Clock screensaver** | A drifting clock over the glow, so nothing burns in |
+| **Quotes screensaver** | Quotes from writers, poets and thinkers in Arabic and English with their authors, one at a time over the glow |
 | **Remote keys** | Keeps the Input, YouTube and gear buttons working after the stock launcher is gone |
 
 Themes, switches and add-ons together, with screenshots: [cleanyour.tv/addons](https://cleanyour.tv/addons).
 
 **More:** [docs/launcher.md](docs/launcher.md) has the launcher settings page row by row, changing the
-default home, the languages, remote keys, the Clock screensaver, navigation and building it yourself.
+default home, the languages, remote keys, the Quotes screensaver, navigation and building it yourself.
 
 <a id="your-own-photos-as-the-background"></a>
 <details>
@@ -344,7 +344,7 @@ your own, and you decide you have the right to show them.
 5. **Take it off** with `tools/theme.sh --reset`.
 
 What it cannot do: there is no crossfade (the picture changes with a cut), no rotation faster than a minute, and
-the Clock screensaver shows time and date only, never photos. Without a `wallpapers/` folder the theme still
+the Quotes screensaver shows the picture behind its quotes only with `clock_wallpaper`. Without a `wallpapers/` folder the theme still
 works and Home keeps its plain colour. A picture is decoded into memory while Home shows it: about 4 MB at 1080p
 in the default 16-bit colour, 8 MB with `wallpaper_true_color` (see [themes/README.md](themes/README.md)), so keep
 the pictures small on a 1 GB TV.
@@ -583,4 +583,5 @@ The people whose work is in this repo:
 ## Licence
 
 MIT, see [`LICENSE`](LICENSE). The Outfit typeface is under the SIL Open Font License, see
-`launcher/FONT-LICENSE-OFL.txt`.
+`launcher/FONT-LICENSE-OFL.txt`; so is Amiri, the screensaver's Arabic typeface, see
+`launcher/FONT-LICENSE-OFL-AMIRI.txt`.

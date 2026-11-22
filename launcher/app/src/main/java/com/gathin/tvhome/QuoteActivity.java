@@ -7,28 +7,27 @@ import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * The clock screensaver shown by Home itself after home_idle_clock_minutes without input. Some TVs' own
+ * The quotes screensaver shown by Home itself after home_idle_clock_minutes without input. Some TVs' own
  * screens (CVTE's live TV) do not keep the screen on, so the system screensaver would cut into programmes;
  * this one only ever starts from Home. Any key returns to Home.
  */
-public class ClockActivity extends Activity {
+public class QuoteActivity extends Activity {
     @Override
     protected void attachBaseContext(android.content.Context base) {
         super.attachBaseContext(LauncherLocale.wrap(base));   // locale
     }
 
 
-    private ClockScene scene;
+    private QuoteScene scene;
 
     @Override
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dream_clock);
-        ClockFormat.apply(getWindow().getDecorView(), Config.load(this).clockFormat);
+        setContentView(R.layout.dream_quotes);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
-        scene = new ClockScene(getWindow().getDecorView());
+        scene = new QuoteScene(getWindow().getDecorView());
         scene.useHomeWallpaper(this);
     }
 
@@ -47,7 +46,7 @@ public class ClockActivity extends Activity {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        // The key that wakes the clock should not also act on Home, so it is consumed here.
+        // The key that leaves the quotes should not also act on Home, so it is consumed here.
         if (event.getAction() == KeyEvent.ACTION_UP) finish();
         return true;
     }

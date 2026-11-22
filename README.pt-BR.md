@@ -123,7 +123,7 @@ sem análises enviadas para servidores externos e sem aplicativos que você nunc
 |---|---|
 | ![A área de destaque mostra o aplicativo em foco sobre um brilho ambiente na cor correspondente](docs/focus-2-up-netflix.png) | ![O menu Entradas: portas HDMI com o que está conectado, AV e TV ao vivo](docs/inputs-menu.jpg) |
 | *Área de destaque e brilho ambiente* | *Entradas: HDMI com status da conexão, AV e TV ao vivo* |
-| ![A grade com o destaque de vidro sobre um bloco e o nome logo abaixo](docs/focus-1-fancode.png) | ![A proteção de tela Relógio: um relógio discreto flutuando sobre o brilho](docs/clock-screensaver.png) |
+| ![A grade com o destaque de vidro sobre um bloco e o nome logo abaixo](docs/focus-1-fancode.png) | ![A proteção de tela Relógio: um relógio discreto flutuando sobre o brilho](docs/quotes-screensaver.png) |
 | *A grade, um destaque de vidro e o nome do bloco* | *Proteção de tela Relógio, com movimento para evitar marcas permanentes na tela* |
 | ![O tema aurora: papel de parede e botões coloridos, aplicados sem recompilar](themes/aurora/screenshot.jpg) | ![Seis colunas e um dock com seis aplicativos definidos em config.json do tema](themes/six-columns/screenshot.jpg) |
 | *Tema Aurora, aplicado com `tools/theme.sh`* | *Seis colunas e um dock com seis aplicativos, no mesmo launcher* |

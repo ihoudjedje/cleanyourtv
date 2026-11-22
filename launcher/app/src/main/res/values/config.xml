@@ -231,7 +231,7 @@
          for HDMI 3 on a TCL Smart TV Pro; the ids are in `tools/tv.py 'dumpsys tv_input'` (hdmi_port=N under
          TvInputHardwareInfo). An action word in place of a package runs that action instead: back, home, recents,
          mute (toggles the sound, with the TV's volume bar), sleep (standby, Android 9 and later), screensaver (the
-         one chosen in the TV's settings, or the launcher's clock), settings, wifi, library (Home with the App
+         one chosen in the TV's settings, or the launcher's quotes), settings, wifi, library (Home with the App
          library open; with app_library off it only brings Home forward, so a remote's Apps button, which sends
          284 KEYCODE_ALL_APPS, can open it: 284:library) or ignore (swallows the button: it
          does nothing, for a shortcut pressed by accident; find its scancode with `tools/tv.py 'getevent -t'`);
@@ -348,7 +348,7 @@
          up, the closed lock in a green outline while one is (solid green only while focused, like the pill). "VPN" /
          "VPN off" become its talkback description. A theme can set "icon_only_vpn": true. -->
     <bool name="icon_only_vpn">false</bool>
-    <!-- The launcher's clocks (Home, the clock screensaver and the Clock screen) in 12- or 24-hour time whatever the TV
+    <!-- The launcher's clocks in 12- or 24-hour time whatever the TV
          is set to: "12", "24", or "system", the default, which follows the TV. Launcher settings' Clock row overrides
          it, and a theme can set "clock_format": "24". -->
     <string name="clock_format" translatable="false">system</string>
@@ -539,22 +539,26 @@
          The grid then draws into a hardware layer, about 6 MB of graphics memory at 1080p, so it is off by default.
          Can also be set with "fade_rows": true in a theme's config.json. -->
     <bool name="fade_rows">false</bool>
-    <!-- Minutes Home may sit untouched before it shows the clock screensaver (ClockActivity); 0 turns it off.
+    <!-- Minutes Home may sit untouched before it shows the quotes screensaver (QuoteActivity); 0 turns it off.
          Unlike the system screensaver this never starts over live TV or an app, which matters on TVs whose
          Live TV window does not keep the screen on (CVTE): there the system screensaver would start in the
          middle of a programme. Can also be set with "home_idle_clock_minutes": 10 in a theme's config.json. -->
     <integer name="home_idle_clock_minutes">0</integer>
-    <!-- Back on the Home screen opens the clock screensaver (ClockActivity, the same screen as
+    <!-- The same wait in seconds, for one shorter than a minute. Above 0 it is used instead of
+         home_idle_clock_minutes, a theme's included; 0 leaves the minutes in charge (the default upstream).
+         config.xml only. This TV: the quotes come up after 10 seconds without a key on Home. -->
+    <integer name="home_idle_clock_seconds">10</integer>
+    <!-- Back on the Home screen opens the quotes screensaver (QuoteActivity, the same screen as
          home_idle_clock_minutes). Back keeps working as usual inside apps and Settings; only Home's own Back
          press changes. Off by default (Back does nothing on Home); a theme can set "back_opens_clock": true. -->
     <bool name="back_opens_clock">false</bool>
-    <!-- The clock screensaver (Home idle clock and the system screensaver) over Home's wallpaper instead of black with
-         a coloured glow. The clock still moves every minute. Can also be set with "clock_wallpaper" in a theme. -->
+    <!-- The quotes screensaver (from Home and as the system screensaver) over Home's wallpaper instead of black with
+         a coloured glow. The key keeps its name from the Clock screensaver the quotes replaced. Can also be set with "clock_wallpaper" in a theme. -->
     <bool name="clock_wallpaper">false</bool>
-    <!-- How dark that wallpaper is behind the clock, 0 to 90 %. Can also be set with "clock_wallpaper_dim". -->
+    <!-- How dark that wallpaper is behind the quotes, 0 to 90 %. Can also be set with "clock_wallpaper_dim". -->
     <integer name="clock_wallpaper_dim">50</integer>
-    <!-- The clock screensaver's slow coloured glow behind the clock. false leaves the clock and date alone on plain black
-         (OLED panels); they still move every minute. Ignored while clock_wallpaper shows a picture. Can also be set
+    <!-- The quotes screensaver's slow coloured glow behind the quotes. false leaves them on plain black
+         (OLED panels). Ignored while clock_wallpaper shows a picture. Can also be set
          with "clock_glow" in a theme. -->
     <bool name="clock_glow">true</bool>
     <!-- Shape of the glow behind the focused app, in its colour: radial (a soft glow, the default) or horizon (the

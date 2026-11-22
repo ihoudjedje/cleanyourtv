@@ -100,7 +100,7 @@ die nach Hause telefoniert, keine Apps, um die du nie gebeten hast.
 |---|---|
 | ![Das Top-Regal nennt die fokussierte App über einem Leuchten in ihrer Farbe](docs/focus-2-up-netflix.png) | ![Das Eingänge-Menü: HDMI-Anschlüsse mit dem, was angeschlossen ist, AV und Live-TV](docs/inputs-menu.jpg) |
 | *Top-Regal und Umgebungsleuchten* | *Eingänge: HDMI mit Verbindungsstatus, AV, Live-TV* |
-| ![Das Raster mit der Glas-Markierung auf einer Kachel und ihrem Namen darunter](docs/focus-1-fancode.png) | ![Der Uhr-Bildschirmschoner: eine dünne Uhr, die über dem Leuchten wandert](docs/clock-screensaver.png) |
+| ![Das Raster mit der Glas-Markierung auf einer Kachel und ihrem Namen darunter](docs/focus-1-fancode.png) | ![Der Uhr-Bildschirmschoner: eine dünne Uhr, die über dem Leuchten wandert](docs/quotes-screensaver.png) |
 | *Das Raster, eine Glas-Markierung, der Name der Kachel* | *Uhr-Bildschirmschoner, wandert, damit nichts einbrennt* |
 | ![Das Aurora-Theme: ein Hintergrund und getönte Pillen, ohne neuen Build aufgespielt](themes/aurora/screenshot.jpg) | ![Sechs Spalten und ein Dock mit sechs Apps aus der config.json eines Themes](themes/six-columns/screenshot.jpg) |
 | *Aurora-Theme, aufgespielt mit `tools/theme.sh`* | *Sechs Spalten und ein Dock mit sechs Apps, derselbe Launcher* |

@@ -3,16 +3,16 @@ package com.gathin.tvhome;
 import android.service.dreams.DreamService;
 
 /**
- * Screensaver: the launcher's thin clock and date on black, over a slow ambient glow (ClockScene).
- * No network, no images: cheap enough for a 1 GB TV.
+ * Screensaver: quotes in Arabic and English with their authors, one at a time on black over a slow ambient
+ * glow (QuoteScene). No network: the quotes and the Arabic typeface are in the APK.
  */
-public class ClockDream extends DreamService {
+public class QuoteDream extends DreamService {
 
-    private ClockScene scene;
+    private QuoteScene scene;
 
     @Override
     protected void attachBaseContext(android.content.Context base) {
-        super.attachBaseContext(LauncherLocale.wrap(base));   // the theme's locale, as ClockActivity
+        super.attachBaseContext(LauncherLocale.wrap(base));   // the theme's locale, as QuoteActivity
     }
 
     @Override
@@ -20,10 +20,9 @@ public class ClockDream extends DreamService {
         super.onAttachedToWindow();
         setInteractive(false);   // any key wakes the TV back to where it was
         setFullscreen(true);
-        setScreenBright(false);
-        setContentView(R.layout.dream_clock);
-        ClockFormat.apply(getWindow().getDecorView(), Config.load(this).clockFormat);
-        scene = new ClockScene(getWindow().getDecorView());
+        setScreenBright(true);   // it is there to be read
+        setContentView(R.layout.dream_quotes);
+        scene = new QuoteScene(getWindow().getDecorView());
         scene.useHomeWallpaper(this);
     }
 

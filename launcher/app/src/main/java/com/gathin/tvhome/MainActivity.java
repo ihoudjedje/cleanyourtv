@@ -122,11 +122,11 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     private boolean homeIgnoreChannelKeys;
     /** Launcher settings' change count this Home was built with (see onResume). */
     private long settingsRevision;
-    /** Idle time on Home before ClockActivity; 0 is off (config.xml, home_idle_clock_minutes). */
+    /** Idle time on Home before QuoteActivity; 0 is off (config.xml, home_idle_clock_seconds, else home_idle_clock_minutes). */
     private long idleClockMs;
-    /** Back on Home opens ClockActivity (config.xml, back_opens_clock). */
+    /** Back on Home opens QuoteActivity (config.xml, back_opens_clock). */
     private boolean backOpensClock;
-    private final Runnable showIdleClock = () -> startActivity(new Intent(this, ClockActivity.class));
+    private final Runnable showIdleClock = () -> startActivity(new Intent(this, QuoteActivity.class));
     private String liveTvAction;
     private String liveTvInputId;
     /** The app library is on (config.xml, app_library): only then can the tile menu take an app off Home. */
@@ -488,7 +488,8 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
         festive = festival.active(LocalDate.now());
         liveTvPkg = cfg.liveTvPackage;
         homeIgnoreChannelKeys = cfg.homeIgnoreChannelKeys;
-        idleClockMs = cfg.homeIdleClockMinutes * MINUTE_MS;
+        int idleSeconds = getResources().getInteger(R.integer.home_idle_clock_seconds);
+        idleClockMs = idleSeconds > 0 ? idleSeconds * 1000L : cfg.homeIdleClockMinutes * MINUTE_MS;
         backOpensClock = cfg.backOpensClock;
         bootToLiveTv = cfg.bootToLiveTv;
         bootInputId = LaunchActions.inputId(cfg.launchActions.get(cfg.liveTvPackage));
@@ -1792,7 +1793,7 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     @SuppressWarnings("deprecation")
     public void onBackPressed() {
         // Home screen: Back goes nowhere, unless back_opens_clock is on.
-        if (backOpensClock) startActivity(new Intent(this, ClockActivity.class));
+        if (backOpensClock) startActivity(new Intent(this, QuoteActivity.class));
     }
 
     // ---- glass highlight -------------------------------------------------------------------------

@@ -104,7 +104,7 @@ analitik yok, hiç istemediğiniz uygulamalar yok.
 |---|---|
 | ![Üst raf, odaklanılan uygulamanın adını kendi rengindeki ortam ışıltısının üzerinde gösterir](docs/focus-2-up-netflix.png) | ![Girişler açılır penceresi: bağlı olanlarla HDMI portları, AV ve Canlı TV](docs/inputs-menu.jpg) |
 | *Üst raf ve ortam ışıltısı* | *Girişler: bağlantı durumuyla HDMI, AV, Canlı TV* |
-| ![Bir kutucuğun üzerinde cam vurgu ve altında adıyla ızgara](docs/focus-1-fancode.png) | ![Saat ekran koruyucusu: ışıltının üzerinde kayan ince bir saat](docs/clock-screensaver.png) |
+| ![Bir kutucuğun üzerinde cam vurgu ve altında adıyla ızgara](docs/focus-1-fancode.png) | ![Saat ekran koruyucusu: ışıltının üzerinde kayan ince bir saat](docs/quotes-screensaver.png) |
 | *Izgara, tek cam vurgu, kutucuğun adı* | *Saat ekran koruyucusu, ekran izi kalmasın diye kayar* |
 | ![Aurora teması: yeniden derlemeden gönderilen bir duvar kâğıdı ve renk tonlu düğmeler](themes/aurora/screenshot.jpg) | ![Bir temanın config.json dosyasından altı sütun ve altı uygulamalık dock](themes/six-columns/screenshot.jpg) |
 | *`tools/theme.sh` ile gönderilen Aurora teması* | *Altı sütun ve altı uygulamalık dock, aynı başlatıcı* |

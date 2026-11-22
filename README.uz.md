@@ -126,7 +126,7 @@ maʼlumot yuboradigan analitika yoʻq, hech soʻramagan ilovalaringiz yoʻq.
 |---|---|
 | ![Yuqori javon fokusdagi ilova nomini uning rangidagi muhit porlashi ustida koʻrsatadi](docs/focus-2-up-netflix.png) | ![Kirishlar oynasi: ulangan narsalar bilan HDMI portlar, AV va Jonli TV](docs/inputs-menu.jpg) |
 | *Yuqori javon va muhit porlashi* | *Kirishlar: ulanish holati bilan HDMI, AV, Jonli TV* |
-| ![Katakcha ustida shisha taʼkid va ostida nomi bilan panjara](docs/focus-1-fancode.png) | ![Soat ekran himoyachisi: porlash ustida siljiydigan ingichka soat](docs/clock-screensaver.png) |
+| ![Katakcha ustida shisha taʼkid va ostida nomi bilan panjara](docs/focus-1-fancode.png) | ![Soat ekran himoyachisi: porlash ustida siljiydigan ingichka soat](docs/quotes-screensaver.png) |
 | *Panjara, bitta shisha taʼkid, katakcha nomi* | *Soat ekran himoyachisi, iz qolmasin deb siljiydi* |
 | ![Aurora mavzusi: qayta yigʻmasdan yuborilgan fon rasmi va ranglangan tugmalar](themes/aurora/screenshot.jpg) | ![Mavzuning config.json faylidan oltita ustun va oltita ilovali dock](themes/six-columns/screenshot.jpg) |
 | *`tools/theme.sh` bilan yuborilgan Aurora mavzusi* | *Oltita ustun va oltita ilovali dock, xuddi shu launcher* |

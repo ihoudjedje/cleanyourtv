@@ -100,7 +100,7 @@ En een tv die je niet langer tegenwerkt: geen gesponsorde rijen, geen opdringeri
 |---|---|
 | ![De bovenbalk toont de geselecteerde app boven een sfeervolle gloed in de kleur van de app](docs/focus-2-up-netflix.png) | ![Het menu Ingangen: HDMI-poorten met aangesloten apparaten, AV en Live-tv](docs/inputs-menu.jpg) |
 | *Bovenbalk en sfeervolle gloed* | *Ingangen: HDMI met verbindingsstatus, AV en Live-tv* |
-| ![Het raster met een glazen markering op een tegel en de naam eronder](docs/focus-1-fancode.png) | ![De klokschermbeveiliging: een subtiele klok die over de gloed beweegt](docs/clock-screensaver.png) |
+| ![Het raster met een glazen markering op een tegel en de naam eronder](docs/focus-1-fancode.png) | ![De klokschermbeveiliging: een subtiele klok die over de gloed beweegt](docs/quotes-screensaver.png) |
 | *Het raster, één glazen markering en de naam van de tegel* | *Klokschermbeveiliging beweegt om inbranden te voorkomen* |
 | ![Het aurora-thema: een achtergrond en gekleurde knoppen, toegepast zonder opnieuw te bouwen](themes/aurora/screenshot.jpg) | ![Zes kolommen en een dock met zes apps uit config.json van een thema](themes/six-columns/screenshot.jpg) |
 | *Aurora-thema toegepast met `tools/theme.sh`* | *Zes kolommen en een dock met zes apps, dezelfde launcher* |

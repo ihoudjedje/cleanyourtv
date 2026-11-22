@@ -72,7 +72,7 @@
 |---:|---:|
 | ![שם האפליקציה המסומנת והילה בצבע הסמל](docs/focus-2-up-netflix.png) | ![תפריט מקורות קלט עם HDMI, AV ושידור חי](docs/inputs-menu.jpg) |
 | האזור העליון וההילה | מקורות קלט ומצב חיבור |
-| ![רשת האפליקציות עם מסגרת הזכוכית](docs/focus-1-fancode.png) | ![שעון דק נע מעל הילה](docs/clock-screensaver.png) |
+| ![רשת האפליקציות עם מסגרת הזכוכית](docs/focus-1-fancode.png) | ![שעון דק נע מעל הילה](docs/quotes-screensaver.png) |
 | מסגרת הזכוכית ושם האריח | שומר מסך עם שעון בתנועה |
 | ![ערכת Aurora עם תמונת רקע וכפתורים בגוון תואם](themes/aurora/screenshot.jpg) | ![שש עמודות ושישה מועדפים](themes/six-columns/screenshot.jpg) |
 | ערכת Aurora | שש עמודות באותו מסך בית |

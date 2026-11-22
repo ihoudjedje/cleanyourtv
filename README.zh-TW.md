@@ -75,7 +75,7 @@ Android 電視和 Android 手機使用相同的偵錯橋接工具。在電視的
 |---|---|
 | ![目前選取的應用程式名稱與環境光](docs/focus-2-up-netflix.png) | ![輸入來源選單：HDMI、AV 與電視直播](docs/inputs-menu.jpg) |
 | *焦點展示與環境光* | *輸入來源與連線狀態* |
-| ![應用程式格線與玻璃質感選取框](docs/focus-1-fancode.png) | ![時鐘螢幕保護程式](docs/clock-screensaver.png) |
+| ![應用程式格線與玻璃質感選取框](docs/focus-1-fancode.png) | ![時鐘螢幕保護程式](docs/quotes-screensaver.png) |
 | *應用程式格線* | *緩慢移動的時鐘，避免烙印* |
 | ![Aurora 主題](themes/aurora/screenshot.jpg) | ![六欄主題與六個應用程式的快捷列](themes/six-columns/screenshot.jpg) |
 | *透過 `tools/theme.sh` 套用 Aurora 主題* | *同一個啟動器，使用不同的排列方式* |

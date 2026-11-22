@@ -136,7 +136,7 @@ final class Config {
     final boolean iconOnlyInputs;
     /** With vpn_pill, the VPN pill as a round lock button (config.xml / theme icon_only_vpn). */
     final boolean iconOnlyVpn;
-    /** Back on the Home screen opens the clock screensaver instead of doing nothing (config.xml / theme back_opens_clock). */
+    /** Back on the Home screen opens the quotes screensaver instead of doing nothing (config.xml / theme back_opens_clock). */
     final boolean backOpensClock;
     /** The ambient glow takes a new app's colour in one frame instead of dipping and fading (config.xml / theme glow_snap). */
     final boolean glowSnap;
@@ -234,7 +234,7 @@ final class Config {
     final boolean appGlow;
     /** The rows fade out under the clock instead of being cut off (config.xml, fade_rows); TopFade. */
     final boolean fadeRows;
-    /** Minutes Home may sit untouched before the clock screensaver (config.xml, home_idle_clock_minutes); 0 is off. */
+    /** Minutes Home may sit untouched before the quotes screensaver (config.xml, home_idle_clock_minutes); 0 is off. */
     final int homeIdleClockMinutes;
     /** The dock band as light frosted glass like the pills (config.xml, dock_glass); false keeps the solid band. */
     final boolean dockGlass;
@@ -275,11 +275,11 @@ final class Config {
     final boolean showGreeting;
     /** The date and the line between it and the clock in the clock's full white instead of dimmed (config.xml, header_white). */
     final boolean headerWhite;
-    /** The clock screensaver over Home's wallpaper instead of the black glow (config.xml, clock_wallpaper). */
+    /** The quotes screensaver over Home's wallpaper instead of the black glow (config.xml, clock_wallpaper). */
     final boolean clockWallpaper;
-    /** How dark the clock screensaver's wallpaper is, 0 to 90 % (config.xml, clock_wallpaper_dim). */
+    /** How dark the quotes screensaver's wallpaper is, 0 to 90 % (config.xml, clock_wallpaper_dim). */
     final int clockWallpaperDim;
-    /** The clock screensaver's coloured glow; false leaves the clock on plain black, e.g. for an OLED (config.xml, clock_glow). */
+    /** The quotes screensaver's coloured glow; false leaves the quotes on plain black, e.g. for an OLED (config.xml, clock_glow). */
     final boolean clockGlow;
     /** Every app in the dock's row, which scrolls sideways, and no grid below it (config.xml, single_row); needs dock_row. */
     final boolean singleRow;

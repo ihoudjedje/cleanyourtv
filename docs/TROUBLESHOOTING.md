@@ -1168,8 +1168,8 @@ Things that bit us or contributors, so they don't bite you. Commands use `tools/
   the firmware will not start the screensaver app's process to bind it. Allowing the op for that app only
   and saving it (`tools/tv.py 'appops set <package> APP_AUTO_START allow; appops write-settings'`) fixed it,
   and it still bound after a reboot. Safety Guard (`com.tcl.guard`, disabled by the TCL lists here) is not
-  the cause: enabling it again changed nothing. The launcher's own Clock screensaver is not affected: Home
-  is already running, so binding `ClockDream` starts nothing (checked on the same TV, with the launcher's
+  the cause: enabling it again changed nothing. The launcher's own Quotes screensaver is not affected: Home
+  is already running, so binding `QuoteDream` starts nothing (checked on the same TV, with the launcher's
   `APP_AUTO_START` at `ignore`). To test without waiting for the timeout:
   `tools/tv.py 'am start -n com.android.systemui/.Somnambulator'`, then
   `tools/tv.py 'dumpsys dreams | grep mCurrentDreamName'`. The key helpers hit the same denial: see
@@ -1645,7 +1645,7 @@ is suspend, skip setImplLocked`), and on waking it drops the one that sends `ACT
 `TextClock` only moves on that tick.
 
 The launcher redraws its own clocks every minute, and when the display comes back on, on Android 11 and older, so
-Home and the Clock screensaver keep time. Clocks in other apps stay frozen. Unplugging the TV, or setting the time
+Home keeps time. Clocks in other apps stay frozen. Unplugging the TV, or setting the time
 once, arms the tick again until the next power press:
 `tools/tv.py "cmd alarm set-time $(( $(date +%s) * 1000 ))"` (the sum is done on the computer: the TV's shell
 overflows it).

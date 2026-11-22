@@ -55,7 +55,7 @@ The launcher's own page has these rows, top to bottom:
   dock band; **Dock band opacity** 100%, 70%, 50% or 30%. The last two only do anything while the dock is
   its own row (`dock_row`, on by default).
 - **Clock**: **System** follows the TV's 12- or 24-hour setting; **12-hour** or **24-hour** sets the launcher's
-  clocks (Home and the clock screensaver) to that, whatever the TV uses (`clock_format` in a theme).
+  clocks to that, whatever the TV uses (`clock_format` in a theme).
 - **Wallpaper**: one picture from the theme's collection (or its `wallpaper.jpg`), **None**, or **Theme
   default**. A pick holds that picture and stops the rotation until you choose Theme default, press
   Follow theme, or push the theme again.
@@ -90,9 +90,9 @@ Hebrew mirrors the layout:
 
 | ![Hebrew Home: the buttons on the left, the greeting, clock and date on the right](hebrew-home.png) | ![Dock and grid: both rows start on the right](hebrew-apps.png) |
 |---|---|
-| ![The Inputs menu: source names and icons on the right, what is not connected on the left](hebrew-inputs.png) | ![The Clock screensaver, the date under the time, right of centre](hebrew-screensaver.png) |
+| ![The Inputs menu: source names and icons on the right, what is not connected on the left](hebrew-inputs.png) | |
 
-The Clock screensaver right-aligns its date and time. Russian covers every screen, including race
+Russian covers every screen, including race
 weekends, festival greetings and the Shamsi date. Other languages keep their original layouts.
 
 ## Module cards
@@ -103,13 +103,43 @@ and choose Module cards to change your mind. How to make one: [`docs/modules.md`
 contract: [`docs/specs/card.md`](specs/card.md). Ready-made ones are in [`addons/`](../addons/), and
 [cleanyour.tv/addons](https://cleanyour.tv/addons) shows the themes, switches and add-ons together.
 
-## Clock screensaver
+## Quotes screensaver
 
-Pick "Clock" in the TV's screensaver settings, or over ADB:
+One quote at a time on black over a slow glow: in Arabic ([Amiri](https://www.amirifont.org/), right to
+left) and in English, each in quotation marks with the author's name. The language the quote was written in is
+on top in larger type, so a verse by al-Mutanabbi opens in Arabic and a line of Shakespeare's in English, with
+the other language under the rule; a quote from a third language opens in English. A quote stays 22 to 30
+seconds, the longer ones longer, then fades into the next. The order is shuffled: every quote comes up once before any
+comes again, a quote never follows itself, and neither does a second one by the same author. Each quote sits a
+little off the last one's spot and the glow changes colour with it, so nothing burns in.
+
+![The Quotes screensaver on a TV](quotes-screensaver.png)
+
+Pick "Quotes" in the TV's screensaver settings, or over ADB:
 
 ```bash
-tools/tv.py 'settings put secure screensaver_components com.gathin.tvhome/.ClockDream; settings put secure screensaver_enabled 1'
+tools/tv.py 'settings put secure screensaver_components com.gathin.tvhome/.QuoteDream; settings put secure screensaver_enabled 1'
 ```
+
+A TV that had the older Clock screensaver selected (`com.gathin.tvhome/.ClockDream`) needs that command once
+after updating: the Clock screensaver is gone, and Android does not follow the rename. To see it without
+waiting for the timeout: `tools/tv.py 'am start -n com.android.systemui/.Somnambulator'`.
+
+The quotes are in [`launcher/app/src/main/res/raw/quotes.txt`](../launcher/app/src/main/res/raw/quotes.txt):
+four lines a quote (the quote and its author, then both in the other language; a quote written in Arabic
+starts with its Arabic lines) with the source in a note above, and ` / ` for a
+verse's line break. They come from philosophers, writers and poets of the Arabic tradition (al-Mutanabbi, Abu
+Tammam, al-Ma'arri, Shawqi, Darwish, Mahfouz), of Greece and Rome, Europe and America, and of China, Japan and
+India, on how to live well; nothing religious. Each was checked against its source before it went in, and one
+that could not be was left out: keep to that when adding one. The file and the typeface (a subset of Amiri
+with the Arabic letters and marks, `res/font/amiri.ttf`) are inside the APK, so it needs no network. The
+launcher's unit tests (`QuotesTest`) check the file's shape, the timing and the order.
+
+The same screen is what `home_idle_clock_minutes` and `back_opens_clock` open from Home
+(`home_idle_clock_seconds` in `config.xml`, when above 0, sets that wait in seconds instead, a theme's
+minutes included), and `clock_wallpaper`,
+`clock_wallpaper_dim` and `clock_glow` set what is behind the quotes. Those keys keep their names from the
+Clock screensaver this one replaced, so existing themes work unchanged.
 
 ## Remote keys
 

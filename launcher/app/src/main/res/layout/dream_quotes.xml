@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screensaver (QuoteDream, QuoteActivity): one quote at a time on black over an ambient glow, in Arabic
+     (Amiri, right to left) and English, each with the author's name. The first pair is the language the quote
+     was written in; QuoteScene sets each pair's typeface, size and direction, fills it and animates it. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF000000">
+
+    <!-- The glow is its background; clock_wallpaper puts the picture in it, cropped like Home's. -->
+    <ImageView
+        android:id="@+id/dreamAmbient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no" />
+
+    <!-- Left to right whatever the launcher's language: each line sets its own text direction. -->
+    <LinearLayout
+        android:id="@+id/dreamContent"
+        android:layout_width="700dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layoutDirection="ltr"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/quoteFirst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:textDirection="rtl"
+            android:breakStrategy="balanced"
+            android:hyphenationFrequency="none"
+            android:textColor="#F5FFFFFF"
+            android:textSize="38sp"
+            android:fontFamily="@font/amiri"
+            android:lineSpacingMultiplier="0.9" />
+
+        <TextView
+            android:id="@+id/quoteFirstAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:textDirection="rtl"
+            android:maxLines="1"
+            android:textColor="#FFE8D9B5"
+            android:textSize="21sp"
+            android:fontFamily="@font/amiri" />
+
+        <View
+            android:id="@+id/quoteRule"
+            android:layout_width="72dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="22dp"
+            android:background="#FFE8D9B5" />
+
+        <TextView
+            android:id="@+id/quoteSecond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:textDirection="ltr"
+            android:breakStrategy="balanced"
+            android:hyphenationFrequency="none"
+            android:textColor="#D9FFFFFF"
+            android:textSize="23sp"
+            android:fontFamily="@font/outfit_light"
+            android:lineSpacingMultiplier="1.2" />
+
+        <TextView
+            android:id="@+id/quoteSecondAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textAlignment="gravity"
+            android:textDirection="ltr"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:letterSpacing="0.16"
+            android:textColor="#FFE8D9B5"
+            android:textSize="13sp"
+            android:fontFamily="@font/outfit_medium" />
+    </LinearLayout>
+</FrameLayout>

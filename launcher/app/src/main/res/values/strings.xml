@@ -44,6 +44,7 @@
     <string name="storage_gb_whole">%1$.0f GB</string>
     <string name="storage_gb_decimal">%1$.1f GB</string>
     <string name="dream_name">Clock</string>
+    <string name="quotes_dream_name">Quotes</string>
     <string name="paper_black">Ultra black</string>
     <string name="paper_colorful">Colorful</string>
     <string name="vpn">VPN</string>
